@@ -1,0 +1,54 @@
+.pageOurClients {
+    &__h1 {
+        text-align: center;
+    }
+
+    &__h1subtitle {
+        text-align: center;
+        margin-top: 15px;
+    }
+
+    &__body {
+        margin-top: 40px;
+    }
+}
+
+.ourClientsGrid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+
+    @media(max-width:999px) {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    @media(max-width:767px) {
+        grid-template-columns: auto;
+    }
+}
+
+.ourClientsCard {
+    padding: 30px;
+    border-radius: 15px;
+    text-align: center;
+    box-shadow: var(--mainBoxShadow);
+
+    &__img {
+        object-fit: contain;
+        margin-bottom: 30px;
+    }
+
+    &__a {
+        text-decoration: none;
+        color: var(--blue);
+        transition: all .25s;
+
+        &:hover {
+            color: var(--green);
+        }
+    }
+
+    &__p {
+        margin-top: 15px;
+    }
+}
