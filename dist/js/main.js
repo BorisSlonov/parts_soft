@@ -24,6 +24,7 @@ __webpack_require__.r(__webpack_exports__);
 swiper__WEBPACK_IMPORTED_MODULE_0__["default"].use([swiper__WEBPACK_IMPORTED_MODULE_0__.Pagination]);
 var swiperGetReadyShop = new swiper__WEBPACK_IMPORTED_MODULE_0__["default"]('.swiperGetReadyShop', {
   loop: true,
+  autoplay: true,
   pagination: {
     el: '.swiper-pagination',
     clickable: true
@@ -88,6 +89,7 @@ __webpack_require__.r(__webpack_exports__);
 swiper__WEBPACK_IMPORTED_MODULE_0__["default"].use([swiper__WEBPACK_IMPORTED_MODULE_0__.Pagination]);
 var swiperPage1 = new swiper__WEBPACK_IMPORTED_MODULE_0__["default"]('.swiperPage1', {
   loop: true,
+  autoplay: true,
   pagination: {
     el: '.swiper-pagination',
     clickable: true
@@ -106,8 +108,13 @@ var swiperPage1 = new swiper__WEBPACK_IMPORTED_MODULE_0__["default"]('.swiperPag
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var swiper__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! swiper */ "./node_modules/swiper/swiper.esm.js");
 
-swiper__WEBPACK_IMPORTED_MODULE_0__["default"].use([swiper__WEBPACK_IMPORTED_MODULE_0__.Navigation, swiper__WEBPACK_IMPORTED_MODULE_0__.Breakpoints]);
+swiper__WEBPACK_IMPORTED_MODULE_0__["default"].use([swiper__WEBPACK_IMPORTED_MODULE_0__.Navigation, swiper__WEBPACK_IMPORTED_MODULE_0__.Breakpoints, swiper__WEBPACK_IMPORTED_MODULE_0__.Autoplay]);
 var swiperPartnersIntegrations = new swiper__WEBPACK_IMPORTED_MODULE_0__["default"]('.swiperPartnersIntegrations', {
+  autoplay: true,
+  // https://swiperjs.com/swiper-api#param-loop
+  //     loop: true,
+  //     Set to true to enable continuous loop mode
+  // Because of nature of how the loop mode works(it will rearrange slides), total number of slides must be >= slidesPerView * 2
   navigation: {
     nextEl: '.swiper-button-next-part-int',
     prevEl: '.swiper-button-prev-part-int'
@@ -116,18 +123,40 @@ var swiperPartnersIntegrations = new swiper__WEBPACK_IMPORTED_MODULE_0__["defaul
   breakpoints: {
     // Когда ширина экрана больше или равна 1000px
     1000: {
-      slidesPerView: 5
+      slidesPerView: 5,
+      loop: true,
+      loopAdditionalSlides: 2
     },
     // Когда ширина экрана больше или равна 768px
     768: {
-      slidesPerView: 4
+      slidesPerView: 4,
+      loop: true,
+      loopAdditionalSlides: 2
     },
     // Когда ширина экрана меньше 768px
     0: {
-      slidesPerView: 1
+      slidesPerView: 1,
+      loop: true,
+      loopAdditionalSlides: 2
     }
   }
 });
+var breakpoint = window.matchMedia('(max-width: 767px)');
+var arrowsWrapper = document.querySelector('.partnersIntegrations__arrowsWrapper');
+var moveArrowsWrapper = function moveArrowsWrapper() {
+  var itemContainerFirst = document.querySelector('.partnersIntegrations__item_arrows');
+  var itemContainerLast = document.querySelector('.partnersIntegrations__item:last-child');
+  if (breakpoint.matches) {
+    // Переместить в partnersIntegrations__item:last-child
+    itemContainerLast.appendChild(arrowsWrapper);
+  } else {
+    // Переместить в partnersIntegrations__item:first-child
+    itemContainerFirst.appendChild(arrowsWrapper);
+  }
+};
+moveArrowsWrapper(); // Выполнить в начале, чтобы инициализировать положение
+
+breakpoint.addEventListener('change', moveArrowsWrapper);
 
 /***/ }),
 
@@ -142,28 +171,68 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var swiper__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! swiper */ "./node_modules/swiper/swiper.esm.js");
 
 swiper__WEBPACK_IMPORTED_MODULE_0__["default"].use([swiper__WEBPACK_IMPORTED_MODULE_0__.Pagination, swiper__WEBPACK_IMPORTED_MODULE_0__.Breakpoints]);
-var swiperReviews = new swiper__WEBPACK_IMPORTED_MODULE_0__["default"]('.swiperReviews', {
-  // loop: true,
-  pagination: {
-    el: '.swiper-pagination',
-    clickable: true
-  },
-  // Опции для разных разрешений
-  breakpoints: {
-    // Когда ширина экрана больше или равна 1000px
-    1000: {
-      slidesPerView: 3
-    },
-    // Когда ширина экрана больше или равна 768px
-    768: {
-      slidesPerView: 2
-    },
-    // Когда ширина экрана меньше 768px
-    0: {
-      slidesPerView: 1
+var breakpoint = window.matchMedia('(max-width: 999px)');
+var swiperReviews = null;
+var breakpointChecker = function breakpointChecker() {
+  if (breakpoint.matches) {
+    if (swiperReviews === null) {
+      swiperReviews = new swiper__WEBPACK_IMPORTED_MODULE_0__["default"]('.swiperReviews', {
+        autoHeight: true,
+        slidesPerView: 1,
+        pagination: {
+          el: '.swiper-pagination',
+          clickable: true
+        },
+        breakpoints: {
+          768: {
+            slidesPerView: 2
+          }
+        }
+      });
+    }
+  } else {
+    if (swiperReviews !== null) {
+      swiperReviews.destroy();
+      swiperReviews = null;
     }
   }
-});
+};
+breakpointChecker();
+breakpoint.addEventListener('change', breakpointChecker);
+
+/***/ }),
+
+/***/ "./src/blocks/modules/startSteps/startSteps.js":
+/*!*****************************************************!*\
+  !*** ./src/blocks/modules/startSteps/startSteps.js ***!
+  \*****************************************************/
+/***/ (() => {
+
+var steps = document.querySelectorAll('.startSteps__num');
+var viewportHeight = window.innerHeight;
+var activeStepIndex = -1;
+function setActiveStep(index) {
+  if (activeStepIndex !== index) {
+    var _steps$activeStepInde, _steps$index;
+    (_steps$activeStepInde = steps[activeStepIndex]) === null || _steps$activeStepInde === void 0 ? void 0 : _steps$activeStepInde.classList.remove('startSteps__num_active');
+    (_steps$index = steps[index]) === null || _steps$index === void 0 ? void 0 : _steps$index.classList.add('startSteps__num_active');
+    activeStepIndex = index;
+  }
+}
+function updateActiveStep() {
+  var scrollPosition = window.scrollY;
+  for (var i = 0; i < steps.length; i++) {
+    var rect = steps[i].getBoundingClientRect();
+    var elemTop = rect.top;
+    var elemBottom = rect.bottom;
+    if (scrollPosition >= 0 && elemTop <= viewportHeight / 2) {
+      setActiveStep(i);
+    } else if (scrollPosition <= 0 && elemBottom >= viewportHeight / 2) {
+      setActiveStep(i);
+    }
+  }
+}
+window.addEventListener('scroll', updateActiveStep);
 
 /***/ }),
 
@@ -180,9 +249,12 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _modules_page1_page1__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! %modules%/page1/page1 */ "./src/blocks/modules/page1/page1.js");
 /* harmony import */ var _modules_partnersIntegrations_partnersIntegrations__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! %modules%/partnersIntegrations/partnersIntegrations */ "./src/blocks/modules/partnersIntegrations/partnersIntegrations.js");
 /* harmony import */ var _modules_getReadyShop_getReadyShop__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! %modules%/getReadyShop/getReadyShop */ "./src/blocks/modules/getReadyShop/getReadyShop.js");
-/* harmony import */ var _modules_reviews_reviews__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! %modules%/reviews/reviews */ "./src/blocks/modules/reviews/reviews.js");
-/* harmony import */ var _modules_footer_footer__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! %modules%/footer/footer */ "./src/blocks/modules/footer/footer.js");
-/* harmony import */ var _modules_footer_footer__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(_modules_footer_footer__WEBPACK_IMPORTED_MODULE_5__);
+/* harmony import */ var _modules_startSteps_startSteps__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! %modules%/startSteps/startSteps */ "./src/blocks/modules/startSteps/startSteps.js");
+/* harmony import */ var _modules_startSteps_startSteps__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(_modules_startSteps_startSteps__WEBPACK_IMPORTED_MODULE_4__);
+/* harmony import */ var _modules_reviews_reviews__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! %modules%/reviews/reviews */ "./src/blocks/modules/reviews/reviews.js");
+/* harmony import */ var _modules_footer_footer__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! %modules%/footer/footer */ "./src/blocks/modules/footer/footer.js");
+/* harmony import */ var _modules_footer_footer__WEBPACK_IMPORTED_MODULE_6___default = /*#__PURE__*/__webpack_require__.n(_modules_footer_footer__WEBPACK_IMPORTED_MODULE_6__);
+
 
 
 

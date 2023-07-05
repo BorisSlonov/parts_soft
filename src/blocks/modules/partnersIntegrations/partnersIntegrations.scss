@@ -2,8 +2,13 @@
     &__arrowsWrapper {
         position: relative;
         display: flex;
+        justify-content: center;
         align-items: center;
         gap: 15px;
+
+        @media(max-width:767px) {
+            margin-top: 30px;
+        }
     }
 
     &__item {
@@ -12,7 +17,16 @@
             align-items: center;
             justify-content: space-between;
             gap: 20px;
+
+            @media(max-width:767px) {
+                flex-direction: column;
+            }
         }
+    }
+
+    .swiper-button-prev-part-int,
+    .swiper-button-next-part-int {
+        cursor: pointer;
     }
 
     .swiper-button-disabled {
@@ -21,13 +35,14 @@
 }
 
 
-
 .swiperPartnersIntegrations {
-    box-shadow: var(--mainBoxShadow);
     border-radius: 5px;
     margin-top: 30px;
     width: 1420px;
     padding-bottom: 0;
+    box-shadow: var(--mainBoxShadow);
+
+
 
     @media(max-width:767px) {
         width: 100%;
@@ -35,6 +50,7 @@
         margin-left: auto;
         margin-right: auto;
     }
+
 
     .swiper-slide {
         &:not(:last-child) {
@@ -73,12 +89,20 @@
         gap: 15px;
     }
 
+    &__hint {
+        position: absolute;
+        left: 0;
+        background-color: #fff;
+        font-size: 14px;
+    }
+
     &__btn {
         position: relative;
         text-decoration: none;
         font-size: 14px;
         color: var(--black);
         padding-top: 40px;
+        cursor: pointer;
 
         &::before {
             content: '';

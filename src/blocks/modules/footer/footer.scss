@@ -77,6 +77,8 @@
 
     &__item {
         &:last-child {
+            display: flex;
+            flex-direction: column;
             align-items: center;
             align-self: center;
         }

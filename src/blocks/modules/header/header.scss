@@ -37,8 +37,8 @@
     background-image: url('../img/sprites/logo.svg');
     z-index: 1000000;
     @media(max-width:767px) {
-        width: 18px;
-        height: 26px;
+        width: 25px;
+        height: 25px;
         background-image: url('../img/sprites/logoMob.svg');
 
     }
@@ -93,6 +93,10 @@
     position: relative;
     margin-bottom: 5px;
     padding-left: 20px;
+
+    @media(max-width:767px) {
+        font-size: 14px;
+    }
 
     &:hover {
         &::before {

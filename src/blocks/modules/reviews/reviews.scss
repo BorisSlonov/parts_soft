@@ -29,3 +29,21 @@
         margin-top: 20px;
     }
 }
+
+.swiperReviews {
+
+    @media(min-width:999px) {
+        .swiper-slide {
+            flex-basis: 33.333%;
+        }
+
+        .swiper-pagination {
+            display: none;
+        }
+
+        &.swiper_pagination {
+            padding-bottom: 0;
+        }
+    }
+
+}

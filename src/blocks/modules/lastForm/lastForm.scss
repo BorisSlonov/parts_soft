@@ -36,6 +36,10 @@
         padding: 15px;
     }
 
+    &__textarea {
+        resize: none;
+    }
+
     &__p {
         text-align: center;
         margin-top: 10px;

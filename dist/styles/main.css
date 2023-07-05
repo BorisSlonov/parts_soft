@@ -1206,6 +1206,7 @@ h4 {
 .partnersIntegrations__arrowsWrapper {
   position: relative;
   display: flex;
+  justify-content: center;
   align-items: center;
   gap: 15px;
 }
@@ -1217,16 +1218,21 @@ h4 {
   gap: 20px;
 }
 
+.partnersIntegrations .swiper-button-prev-part-int,
+.partnersIntegrations .swiper-button-next-part-int {
+  cursor: pointer;
+}
+
 .partnersIntegrations .swiper-button-disabled {
   opacity: 0.5;
 }
 
 .swiperPartnersIntegrations {
-  box-shadow: var(--mainBoxShadow);
   border-radius: 5px;
   margin-top: 30px;
   width: 1420px;
   padding-bottom: 0;
+  box-shadow: var(--mainBoxShadow);
 }
 
 .swiperPartnersIntegrations .swiper-slide:not(:last-child) {
@@ -1263,12 +1269,20 @@ h4 {
   gap: 15px;
 }
 
+.partnersIntegrationsCard__hint {
+  position: absolute;
+  left: 0;
+  background-color: #fff;
+  font-size: 14px;
+}
+
 .partnersIntegrationsCard__btn {
   position: relative;
   text-decoration: none;
   font-size: 14px;
   color: var(--black);
   padding-top: 40px;
+  cursor: pointer;
 }
 
 .partnersIntegrationsCard__btn::before {
@@ -1447,10 +1461,12 @@ h4 {
   color: #fff;
   font-weight: 700;
   font-size: 36px;
+  transition: all 0.5s;
 }
 
 .startSteps__num_active {
   background-color: var(--green);
+  transition: all 0.5s;
 }
 
 .startSteps__p {
@@ -1566,6 +1582,10 @@ h4 {
   padding: 15px;
 }
 
+.lastForm__textarea {
+  resize: none;
+}
+
 .lastForm__p {
   text-align: center;
   margin-top: 10px;
@@ -1627,6 +1647,8 @@ h4 {
 }
 
 .footerFirstRow__item:last-child {
+  display: flex;
+  flex-direction: column;
   align-items: center;
   align-self: center;
 }
@@ -1742,6 +1764,18 @@ h4 {
   .header__body {
     border-bottom: 2px solid #F6F6F6;
     align-items: flex-end;
+  }
+
+  .swiperReviews .swiper-slide {
+    flex-basis: 33.333%;
+  }
+
+  .swiperReviews .swiper-pagination {
+    display: none;
+  }
+
+  .swiperReviews.swiper_pagination {
+    padding-bottom: 0;
   }
 }
 
@@ -2011,9 +2045,13 @@ h4 {
   }
 
   .header__logo {
-    width: 18px;
-    height: 26px;
+    width: 25px;
+    height: 25px;
     background-image: url("../img/sprites/logoMob.svg");
+  }
+
+  .header__contactsLink_tel {
+    font-size: 14px;
   }
 
   .header__login-wrapper {
@@ -2026,6 +2064,14 @@ h4 {
   }
 
   .page1advanteges__body {
+    flex-direction: column;
+  }
+
+  .partnersIntegrations__arrowsWrapper {
+    margin-top: 30px;
+  }
+
+  .partnersIntegrations__item_arrows {
     flex-direction: column;
   }
 
