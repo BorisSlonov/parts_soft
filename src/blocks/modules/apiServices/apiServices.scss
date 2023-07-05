@@ -1,0 +1,28 @@
+.apiServices {
+    &__texts {
+        max-width: 715px;
+    }
+
+    &__subtitle {
+        font-size: 21px;
+    }
+
+    &__body {
+        background-image: url('../img/apiServicesPc.webp');
+        background-size: contain;
+        background-position: 50% 50%;
+        height: 230px;
+        width: 100%;
+        background-repeat: no-repeat;
+        margin: 25px 0;
+
+        @media(max-width:767px) {
+            background-image: url('../img/apiServicesMob.webp');
+            height: 195px;
+        }
+    }
+
+    &__linkWrapper {
+        text-align: right;
+    }
+}

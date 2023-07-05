@@ -1,0 +1,24 @@
+.swiper {
+    &_pagination {
+        padding-bottom: 40px;
+    }
+    .swiper-pagination {
+        bottom: 0;
+    }
+}
+
+
+.swiper-pagination-bullet {
+    background-color: #BFBFBF;
+    width: 80px;
+    height: 3px;
+    border-radius: 2px;
+    cursor: pointer;
+    @media(max-width:767px) {
+        width: 40px;
+    }
+}
+
+.swiper-pagination-bullet-active {
+    background-color: var(--green);
+}

@@ -1,0 +1,43 @@
+.lastFormSection {
+    &__body {
+        display: flex;
+        align-items: center;
+        gap: 50px;
+
+        @media(max-width:768px) {
+            flex-direction: column-reverse;
+            gap: 25px;
+        }
+    }
+
+    &__item {
+        &_form {
+            max-width: 500px;
+        }
+    }
+}
+
+.lastForm {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    max-width: 500px;
+
+
+
+    &__input,
+    &__textarea {
+        border-radius: 5px;
+        border: 1px solid #D9D9D9;
+        font-family: 'Open Sans';
+        color: #808080;
+        font-size: 16px;
+        font-weight: 600;
+        padding: 15px;
+    }
+
+    &__p {
+        text-align: center;
+        margin-top: 10px;
+    }
+}
