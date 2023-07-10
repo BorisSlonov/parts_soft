@@ -9,6 +9,6 @@ buttons.forEach((button, index) => {
         });
 
         const buttonText = buttonSpans[index].textContent.trim();
-        buttonSpans[index].textContent = buttonText === 'Свернуть' ? 'Развернуть' : 'Свернуть';
+        buttonSpans[index].textContent = buttonText === 'Свернуть' ? 'Развернуть все' : 'Свернуть';
     });
 });

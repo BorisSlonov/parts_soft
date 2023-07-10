@@ -170,7 +170,7 @@ buttons.forEach(function (button, index) {
       row.classList.toggle('hide');
     });
     var buttonText = buttonSpans[index].textContent.trim();
-    buttonSpans[index].textContent = buttonText === 'Свернуть' ? 'Развернуть' : 'Свернуть';
+    buttonSpans[index].textContent = buttonText === 'Свернуть' ? 'Развернуть все' : 'Свернуть';
   });
 });
 
