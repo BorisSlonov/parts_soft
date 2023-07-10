@@ -106,3 +106,13 @@ if (pricesTabs) {
         "pricesTabs__title_active"
     );
 }
+
+const supplierTabs = document.querySelector(".supplierTabs");
+if (supplierTabs) {
+    tabs(
+        ".supplierTabs__titles",
+        ".supplierTabs__title",
+        ".supplierTabs__item",
+        "supplierTabs__title_active"
+    );
+}

@@ -470,6 +470,10 @@ var pricesTabs = document.querySelector(".pricesTabs");
 if (pricesTabs) {
   tabs(".pricesTabs__titles", ".pricesTabs__title", ".pricesTabs__item", "pricesTabs__title_active");
 }
+var supplierTabs = document.querySelector(".supplierTabs");
+if (supplierTabs) {
+  tabs(".supplierTabs__titles", ".supplierTabs__title", ".supplierTabs__item", "supplierTabs__title_active");
+}
 
 /***/ }),
 
@@ -489,8 +493,10 @@ function updateSubtitlePosition() {
     subtitleTeleportOut.appendChild(subtitleVideoTeleport);
   }
 }
-window.addEventListener('resize', updateSubtitlePosition);
-updateSubtitlePosition();
+if (document.querySelector('.subtitle_videoTeleport')) {
+  window.addEventListener('resize', updateSubtitlePosition);
+  updateSubtitlePosition();
+}
 function updatebtnPosition() {
   var btnVideoTeleport = document.querySelector('.btn_videoTeleport');
   var btnTeleportIn = document.querySelector('.btnTeleportIn');
@@ -501,8 +507,10 @@ function updatebtnPosition() {
     btnTeleportOut.appendChild(btnVideoTeleport);
   }
 }
-window.addEventListener('resize', updatebtnPosition);
-updatebtnPosition();
+if (document.querySelector('.btn_videoTeleport')) {
+  window.addEventListener('resize', updatebtnPosition);
+  updatebtnPosition();
+}
 
 /***/ }),
 

@@ -10,8 +10,11 @@ function updateSubtitlePosition() {
     }
 }
 
-window.addEventListener('resize', updateSubtitlePosition);
-updateSubtitlePosition();
+if (document.querySelector('.subtitle_videoTeleport')) {
+    window.addEventListener('resize', updateSubtitlePosition);
+    updateSubtitlePosition();
+}
+
 function updatebtnPosition() {
     var btnVideoTeleport = document.querySelector('.btn_videoTeleport');
     var btnTeleportIn = document.querySelector('.btnTeleportIn');
@@ -24,5 +27,7 @@ function updatebtnPosition() {
     }
 }
 
-window.addEventListener('resize', updatebtnPosition);
-updatebtnPosition(); 
+if (document.querySelector('.btn_videoTeleport')) {
+    window.addEventListener('resize', updatebtnPosition);
+    updatebtnPosition();
+}
