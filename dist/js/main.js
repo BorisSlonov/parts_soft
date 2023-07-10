@@ -155,6 +155,74 @@ window.addEventListener("DOMContentLoaded", function () {
 
 /***/ }),
 
+/***/ "./src/blocks/modules/pageArticle/pageArticle.js":
+/*!*******************************************************!*\
+  !*** ./src/blocks/modules/pageArticle/pageArticle.js ***!
+  \*******************************************************/
+/***/ (() => {
+
+// заголовки в меню создаются динамически, исходя из контента в singleArticle__content
+// если внутри singleArticle__item кроме h2 есть h3, создается подменю
+function createMenu() {
+  var navMenu = document.querySelector('.singleArticle__navMenu');
+  var items = document.querySelectorAll('.singleArticle__item');
+  items.forEach(function (item) {
+    var h2 = item.querySelector('.singleArticle__heading--h2');
+    var h3s = item.querySelectorAll('.singleArticle__heading--h3');
+    var menuItem = document.createElement('div');
+    menuItem.className = 'singleArticle__menuItem';
+    var h2Wrapper = document.createElement('div');
+    h2Wrapper.className = 'singleArticle__h2Wrapper';
+    if (h3s.length > 0) {
+      var h2Title = document.createElement('span');
+      h2Title.className = 'singleArticle__h2Span';
+      h2Title.textContent = h2.textContent;
+      h2Wrapper.appendChild(h2Title);
+      var arrow = document.createElement('div');
+      arrow.className = 'singleArticle__arrow';
+      h2Wrapper.appendChild(arrow);
+      arrow.addEventListener('click', function (event) {
+        event.stopPropagation();
+        var h3List = menuItem.querySelector('.singleArticle__h3List');
+        h3List.classList.toggle('singleArticle__h3List--expanded');
+        arrow.classList.toggle('singleArticle__arrow--expanded');
+      });
+    } else {
+      var _h2Title = document.createElement('span');
+      _h2Title.className = 'singleArticle__h2Span';
+      _h2Title.textContent = h2.textContent;
+      h2Wrapper.appendChild(_h2Title);
+    }
+    h2Wrapper.addEventListener('click', function () {
+      h2.scrollIntoView({
+        behavior: 'smooth'
+      });
+    });
+    menuItem.appendChild(h2Wrapper);
+    if (h3s.length > 0) {
+      var h3List = document.createElement('ul');
+      h3List.className = 'singleArticle__h3List';
+      h3s.forEach(function (h3) {
+        var h3Item = document.createElement('li');
+        h3Item.className = 'singleArticle__h3Item';
+        h3Item.textContent = h3.textContent;
+        h3List.appendChild(h3Item);
+        h3Item.addEventListener('click', function () {
+          h3.scrollIntoView({
+            behavior: 'smooth'
+          });
+        });
+      });
+      menuItem.appendChild(h3List);
+      h3List.classList.add('singleArticle__h3List--collapsed');
+    }
+    navMenu.appendChild(menuItem);
+  });
+}
+createMenu();
+
+/***/ }),
+
 /***/ "./src/blocks/modules/pagePrices/pagePrices.js":
 /*!*****************************************************!*\
   !*** ./src/blocks/modules/pagePrices/pagePrices.js ***!
@@ -544,6 +612,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _modules_tabs_tabs__WEBPACK_IMPORTED_MODULE_11___default = /*#__PURE__*/__webpack_require__.n(_modules_tabs_tabs__WEBPACK_IMPORTED_MODULE_11__);
 /* harmony import */ var _modules_pagePrices_pagePrices__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! %modules%/pagePrices/pagePrices */ "./src/blocks/modules/pagePrices/pagePrices.js");
 /* harmony import */ var _modules_pagePrices_pagePrices__WEBPACK_IMPORTED_MODULE_12___default = /*#__PURE__*/__webpack_require__.n(_modules_pagePrices_pagePrices__WEBPACK_IMPORTED_MODULE_12__);
+/* harmony import */ var _modules_pageArticle_pageArticle__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! %modules%/pageArticle/pageArticle */ "./src/blocks/modules/pageArticle/pageArticle.js");
+/* harmony import */ var _modules_pageArticle_pageArticle__WEBPACK_IMPORTED_MODULE_13___default = /*#__PURE__*/__webpack_require__.n(_modules_pageArticle_pageArticle__WEBPACK_IMPORTED_MODULE_13__);
+
 
 
 

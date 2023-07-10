@@ -12,3 +12,4 @@ import "%modules%/popups/popups";
 import "%modules%/accordion/accordion";
 import "%modules%/tabs/tabs";
 import "%modules%/pagePrices/pagePrices";
+import "%modules%/pageArticle/pageArticle";
