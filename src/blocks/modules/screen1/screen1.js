@@ -1,5 +1,5 @@
-import Swiper, { Breakpoints, Autoplay } from 'swiper';
-Swiper.use([Breakpoints, Autoplay]);
+import Swiper, { Pagination, Breakpoints, Autoplay } from 'swiper';
+Swiper.use([Pagination, Breakpoints, Autoplay]);
 
 
 const swiperscreen1 = new Swiper('.swiperscreen1', {
