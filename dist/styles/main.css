@@ -990,7 +990,7 @@ h4 {
 .linkWithIcon {
   position: relative;
   display: block;
-  padding-left: 34px;
+  padding-left: 44px;
 }
 
 .linkWithIcon::before {
@@ -2963,6 +2963,10 @@ h4 {
 
   .h2 {
     font-size: 32px;
+  }
+
+  .linkWithIcon {
+    padding-left: 34px;
   }
 
   .linkWithIcon::before {
