@@ -5,6 +5,9 @@
 
     &__subtitle {
         font-size: 21px;
+        @media(max-width:767px) {
+            font-size: 16px;    
+        }
     }
 
     &__body {

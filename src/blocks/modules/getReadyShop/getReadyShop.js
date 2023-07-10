@@ -10,3 +10,4 @@ const swiperGetReadyShop = new Swiper('.swiperGetReadyShop', {
         clickable: true,
     },
 });
+
