@@ -1,0 +1,114 @@
+.qaTabs {
+  &__titles {
+    display: flex;
+    flex-direction: column;
+
+    @media(max-width:999px) {
+      display: none;
+    }
+  }
+
+  &__title {
+    padding: 20px;
+    border-radius: 15px;
+    transition: all .25s;
+    font-weight: 400;
+    cursor: pointer;
+
+    &:hover {
+      color: var(--green);
+    }
+
+    &_active {
+      background-color: #fff;
+      color: var(--green);
+      box-shadow: var(--mainBoxShadow);
+    }
+  }
+}
+
+.helpTabs {
+  &__titles {
+    display: flex;
+    flex-direction: column;
+
+    @media(max-width:999px) {
+      display: none;
+    }
+  }
+
+  &__title {
+    padding: 20px;
+    border-radius: 15px;
+    transition: all .25s;
+    font-weight: 400;
+    font-size: 16px;
+    cursor: pointer;
+
+    &:hover {
+      color: var(--green);
+    }
+
+    &_active {
+      background-color: #fff;
+      color: var(--green);
+      box-shadow: var(--mainBoxShadow);
+    }
+  }
+
+  &__h2 {
+    font-size: 30px;
+  }
+
+  &__h3 {
+    font-size: 45px;
+    margin-bottom: 40px;
+
+    @media(max-width:999px) {
+      font-size: 30px;
+      margin-bottom: 30px;
+    }
+
+    @media(max-width:767px) {
+      font-size: 21px;
+      margin-bottom: 20px;
+    }
+  }
+
+  &__a {
+    display: block;
+    width: 100%;
+    text-decoration: none;
+    color: var(--black);
+    padding-top: 15px;
+    padding-bottom: 15px;
+    border-bottom: 1px solid #BFBFBF;
+   
+    transition: all .25s;
+
+    &:hover {
+      color: var(--green);
+    }
+  }
+
+  &__nav {
+    margin-top: 40px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 20px;
+
+  }
+
+  &__navLink {
+    color: var(--black);
+    text-decoration: none;
+    color: var(--grey);
+    transition: all .25s;
+
+    &:hover {
+      color: var(--green);
+    }
+  }
+
+}

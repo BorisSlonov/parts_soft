@@ -39,10 +39,7 @@
     border-radius: 5px;
     margin-top: 30px;
     width: 1420px;
-    padding-bottom: 0;
-    box-shadow: var(--mainBoxShadow);
-
-
+    padding-bottom: 50px;
 
     @media(max-width:767px) {
         width: 100%;
@@ -67,6 +64,11 @@
     flex-direction: column;
     align-items: center;
     text-align: center;
+
+    &_boxShadow {
+        border-radius: 15px;
+        box-shadow: var(--mainBoxShadow);
+    }
 
     &__img {
         object-fit: contain;
@@ -117,21 +119,61 @@
 
         }
 
+        &::after {
+            content: '';
+            position: absolute;
+            bottom: -110px;
+            background-size: contain;
+            background-repeat: no-repeat;
+            width: 355px;
+            transform: scale(0);
+            opacity: 0;
+            transition: .25s;
+            height: 135px;
+
+
+        }
+
+        &:hover {
+            &:after {
+                transform: scale(1);
+                opacity: 1;
+            }
+        }
+
         &_search {
             &::before {
                 background-image: url('../img/sprites/search.svg');
+
+            }
+
+            &::after {
+                background-image: url('../img/sprites/tip1.svg');
+                left: -88px;
+
             }
         }
 
         &_orders {
             &::before {
                 background-image: url('../img/sprites/orders.svg');
+
+            }
+
+            &::after {
+                background-image: url('../img/sprites/tip2.svg');
+                left: -150px;
             }
         }
 
         &_status {
             &::before {
                 background-image: url('../img/sprites/status.svg');
+            }
+
+            &::after {
+                background-image: url('../img/sprites/tip3.svg');
+                right: -115px;
             }
         }
     }

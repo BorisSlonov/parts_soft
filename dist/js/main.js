@@ -1,6 +1,85 @@
 /******/ (() => { // webpackBootstrap
 /******/ 	var __webpack_modules__ = ({
 
+/***/ "./src/blocks/modules/accordion/accordion.js":
+/*!***************************************************!*\
+  !*** ./src/blocks/modules/accordion/accordion.js ***!
+  \***************************************************/
+/***/ (() => {
+
+document.addEventListener("DOMContentLoaded", function () {
+  var checkAccordion = document.querySelector(".accordion");
+  if (checkAccordion) {
+    var btns = document.querySelectorAll(".accordion__h4");
+    btns.forEach(function (btn) {
+      console.log('click');
+      btn.addEventListener("click", function () {
+        if (!this.classList.contains("acc-active")) {
+          btns.forEach(function (btn) {
+            btn.classList.remove("acc-active");
+          });
+          this.classList.add("acc-active");
+        } else {
+          this.classList.remove("acc-active");
+        }
+      });
+    });
+  }
+});
+
+/***/ }),
+
+/***/ "./src/blocks/modules/customSelect/customSelect.js":
+/*!*********************************************************!*\
+  !*** ./src/blocks/modules/customSelect/customSelect.js ***!
+  \*********************************************************/
+/***/ (() => {
+
+// Получаем все кастомные селекты
+var customSelects = document.querySelectorAll('.custom-select');
+
+// Проходимся по каждому кастомному селекту
+customSelects.forEach(function (select) {
+  // Получаем нужные элементы внутри каждого кастомного селекта
+  var selectedOption = select.querySelector('.select-selected');
+  var dropdown = select.querySelector('.select-dropdown');
+  var options = select.querySelectorAll('.select-option');
+
+  // Обработчик клика для открытия/закрытия выпадающего списка и выбора опции
+  selectedOption.addEventListener('click', function (event) {
+    event.stopPropagation(); // Останавливаем всплытие события
+    selectedOption.classList.toggle('show');
+    dropdown.classList.toggle('show');
+  });
+
+  // Обработчик клика для выбора опции
+  options.forEach(function (option) {
+    option.addEventListener('click', function (event) {
+      event.stopPropagation(); // Останавливаем всплытие события
+      var value = option.getAttribute('data-value');
+      var text = option.innerText;
+      if (document.querySelector('.linkWithIcon')) {
+        var iconClass = option.querySelector('span').classList[1]; // Получаем второй класс у span
+        selectedOption.innerHTML = "<span class=\"linkWithIcon ".concat(iconClass, "\">").concat(text, "</span>");
+      } else {
+        selectedOption.innerHTML = "".concat(text);
+      }
+
+      // Закрываем выпадающий список
+      dropdown.classList.remove('show');
+      selectedOption.classList.remove('show');
+    });
+  });
+
+  // Закрываем выпадающий список при клике вне его области
+  window.addEventListener('click', function () {
+    dropdown.classList.remove('show');
+    selectedOption.classList.remove('show');
+  });
+});
+
+/***/ }),
+
 /***/ "./src/blocks/modules/footer/footer.js":
 /*!*********************************************!*\
   !*** ./src/blocks/modules/footer/footer.js ***!
@@ -76,24 +155,23 @@ window.addEventListener("DOMContentLoaded", function () {
 
 /***/ }),
 
-/***/ "./src/blocks/modules/page1/page1.js":
-/*!*******************************************!*\
-  !*** ./src/blocks/modules/page1/page1.js ***!
-  \*******************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+/***/ "./src/blocks/modules/pagePrices/pagePrices.js":
+/*!*****************************************************!*\
+  !*** ./src/blocks/modules/pagePrices/pagePrices.js ***!
+  \*****************************************************/
+/***/ (() => {
 
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var swiper__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! swiper */ "./node_modules/swiper/swiper.esm.js");
-
-swiper__WEBPACK_IMPORTED_MODULE_0__["default"].use([swiper__WEBPACK_IMPORTED_MODULE_0__.Pagination]);
-var swiperPage1 = new swiper__WEBPACK_IMPORTED_MODULE_0__["default"]('.swiperPage1', {
-  loop: true,
-  autoplay: true,
-  pagination: {
-    el: '.swiper-pagination',
-    clickable: true
-  }
+var buttons = document.querySelectorAll('.btn_pricesTableOpenHidden');
+var buttonSpans = document.querySelectorAll('.btn_pricesTableOpenHidden .btn__span');
+var rows = document.querySelectorAll('.pricesTable__row_openHidden');
+buttons.forEach(function (button, index) {
+  button.addEventListener('click', function () {
+    rows.forEach(function (row) {
+      row.classList.toggle('hide');
+    });
+    var buttonText = buttonSpans[index].textContent.trim();
+    buttonSpans[index].textContent = buttonText === 'Свернуть' ? 'Развернуть' : 'Свернуть';
+  });
 });
 
 /***/ }),
@@ -111,6 +189,8 @@ __webpack_require__.r(__webpack_exports__);
 swiper__WEBPACK_IMPORTED_MODULE_0__["default"].use([swiper__WEBPACK_IMPORTED_MODULE_0__.Navigation, swiper__WEBPACK_IMPORTED_MODULE_0__.Breakpoints, swiper__WEBPACK_IMPORTED_MODULE_0__.Autoplay]);
 var swiperPartnersIntegrations = new swiper__WEBPACK_IMPORTED_MODULE_0__["default"]('.swiperPartnersIntegrations', {
   autoplay: true,
+  delay: 2000,
+  loop: true,
   // https://swiperjs.com/swiper-api#param-loop
   //     loop: true,
   //     Set to true to enable continuous loop mode
@@ -123,7 +203,7 @@ var swiperPartnersIntegrations = new swiper__WEBPACK_IMPORTED_MODULE_0__["defaul
   breakpoints: {
     // Когда ширина экрана больше или равна 1000px
     1000: {
-      slidesPerView: 5,
+      slidesPerView: 4,
       loop: true,
       loopAdditionalSlides: 2
     },
@@ -143,20 +223,66 @@ var swiperPartnersIntegrations = new swiper__WEBPACK_IMPORTED_MODULE_0__["defaul
 });
 var breakpoint = window.matchMedia('(max-width: 767px)');
 var arrowsWrapper = document.querySelector('.partnersIntegrations__arrowsWrapper');
-var moveArrowsWrapper = function moveArrowsWrapper() {
-  var itemContainerFirst = document.querySelector('.partnersIntegrations__item_arrows');
-  var itemContainerLast = document.querySelector('.partnersIntegrations__item:last-child');
-  if (breakpoint.matches) {
-    // Переместить в partnersIntegrations__item:last-child
-    itemContainerLast.appendChild(arrowsWrapper);
-  } else {
-    // Переместить в partnersIntegrations__item:first-child
-    itemContainerFirst.appendChild(arrowsWrapper);
-  }
-};
-moveArrowsWrapper(); // Выполнить в начале, чтобы инициализировать положение
+if (arrowsWrapper) {
+  var moveArrowsWrapper = function moveArrowsWrapper() {
+    var itemContainerFirst = document.querySelector('.partnersIntegrations__item_arrows');
+    var itemContainerLast = document.querySelector('.partnersIntegrations__item:last-child');
+    if (breakpoint.matches) {
+      // Переместить в partnersIntegrations__item:last-child
+      itemContainerLast.appendChild(arrowsWrapper);
+    } else {
+      // Переместить в partnersIntegrations__item:first-child
+      itemContainerFirst.appendChild(arrowsWrapper);
+    }
+  };
+  moveArrowsWrapper(); // Выполнить в начале, чтобы инициализировать положение
 
-breakpoint.addEventListener('change', moveArrowsWrapper);
+  breakpoint.addEventListener('change', moveArrowsWrapper);
+}
+
+/***/ }),
+
+/***/ "./src/blocks/modules/popups/popups.js":
+/*!*********************************************!*\
+  !*** ./src/blocks/modules/popups/popups.js ***!
+  \*********************************************/
+/***/ (() => {
+
+function modalContent(trigger, item) {
+  var btn = document.querySelectorAll(trigger),
+    pop = document.querySelector(item),
+    close = document.querySelectorAll('.popup-close'),
+    closeBack = document.querySelectorAll('.popup'),
+    activeClass = 'show',
+    hideClass = 'hide';
+  function showContent() {
+    pop.classList.add(activeClass);
+    pop.classList.remove(hideClass);
+    document.body.style.overflow = 'hidden';
+    window.dispatchEvent(new CustomEvent('resize'));
+  }
+  function hideContent() {
+    pop.classList.remove(activeClass);
+    pop.classList.add(hideClass);
+    document.body.style.overflow = '';
+  }
+  function showHideContent(trigger, func) {
+    trigger.forEach(function (item) {
+      item.addEventListener('click', function (e) {
+        if (e.target && e.target.className === item.className) {
+          e.preventDefault();
+          func();
+        }
+      });
+    });
+  }
+  showHideContent(btn, showContent);
+  showHideContent(close, hideContent);
+  showHideContent(closeBack, hideContent);
+}
+modalContent('.callback-btn', '.popup_callback');
+modalContent('.done-btn', '.popup_done');
+modalContent('.demo-btn', '.popup_demo');
 
 /***/ }),
 
@@ -171,34 +297,58 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var swiper__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! swiper */ "./node_modules/swiper/swiper.esm.js");
 
 swiper__WEBPACK_IMPORTED_MODULE_0__["default"].use([swiper__WEBPACK_IMPORTED_MODULE_0__.Pagination, swiper__WEBPACK_IMPORTED_MODULE_0__.Breakpoints]);
-var breakpoint = window.matchMedia('(max-width: 999px)');
-var swiperReviews = null;
-var breakpointChecker = function breakpointChecker() {
-  if (breakpoint.matches) {
-    if (swiperReviews === null) {
-      swiperReviews = new swiper__WEBPACK_IMPORTED_MODULE_0__["default"]('.swiperReviews', {
-        autoHeight: true,
-        slidesPerView: 1,
-        pagination: {
-          el: '.swiper-pagination',
-          clickable: true
-        },
-        breakpoints: {
-          768: {
-            slidesPerView: 2
+if (document.querySelector('.swiperReviews')) {
+  var breakpoint = window.matchMedia('(max-width: 999px)');
+  var swiperReviews = null;
+  var breakpointChecker = function breakpointChecker() {
+    if (breakpoint.matches) {
+      if (swiperReviews === null) {
+        swiperReviews = new swiper__WEBPACK_IMPORTED_MODULE_0__["default"]('.swiperReviews', {
+          autoHeight: true,
+          slidesPerView: 1,
+          pagination: {
+            el: '.swiper-pagination',
+            clickable: true
+          },
+          breakpoints: {
+            768: {
+              slidesPerView: 2
+            }
           }
-        }
-      });
+        });
+      }
+    } else {
+      if (swiperReviews !== null) {
+        swiperReviews.destroy();
+        swiperReviews = null;
+      }
     }
-  } else {
-    if (swiperReviews !== null) {
-      swiperReviews.destroy();
-      swiperReviews = null;
-    }
+  };
+  breakpointChecker();
+  breakpoint.addEventListener('change', breakpointChecker);
+}
+
+/***/ }),
+
+/***/ "./src/blocks/modules/screen1/screen1.js":
+/*!***********************************************!*\
+  !*** ./src/blocks/modules/screen1/screen1.js ***!
+  \***********************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var swiper__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! swiper */ "./node_modules/swiper/swiper.esm.js");
+
+swiper__WEBPACK_IMPORTED_MODULE_0__["default"].use([swiper__WEBPACK_IMPORTED_MODULE_0__.Breakpoints, swiper__WEBPACK_IMPORTED_MODULE_0__.Autoplay]);
+var swiperscreen1 = new swiper__WEBPACK_IMPORTED_MODULE_0__["default"]('.swiperscreen1', {
+  loop: true,
+  autoplay: true,
+  pagination: {
+    el: '.swiper-pagination',
+    clickable: true
   }
-};
-breakpointChecker();
-breakpoint.addEventListener('change', breakpointChecker);
+});
 
 /***/ }),
 
@@ -236,6 +386,93 @@ window.addEventListener('scroll', updateActiveStep);
 
 /***/ }),
 
+/***/ "./src/blocks/modules/tabs/tabs.js":
+/*!*****************************************!*\
+  !*** ./src/blocks/modules/tabs/tabs.js ***!
+  \*****************************************/
+/***/ (() => {
+
+var tabs = function tabs(headerSelector, tabSelector, contentSelector, activeClass) {
+  var header = document.querySelector(headerSelector),
+    tab = document.querySelectorAll(tabSelector),
+    content = document.querySelectorAll(contentSelector);
+  function hideTabContent() {
+    content.forEach(function (item) {
+      item.style.display = "none";
+    });
+    tab.forEach(function (item) {
+      item.classList.remove(activeClass);
+    });
+  }
+  function showTabContent() {
+    var i = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 0;
+    content[i].style.display = "block";
+    tab[i].classList.add(activeClass);
+  }
+  hideTabContent();
+  showTabContent();
+  header.addEventListener("click", function (e) {
+    var target = e.target;
+    if (target && (target.classList.contains(tabSelector.replace(/\./, "")) || target.parentNode.classList.contains(tabSelector.replace(/\./, "")))) {
+      tab.forEach(function (item, i) {
+        if (target == item || target.parentNode == item) {
+          hideTabContent();
+          showTabContent(i);
+        }
+      });
+    }
+  });
+
+  // Получаем все кастомные селекты
+  var selects = document.querySelectorAll(".custom-select_qa, .custom-select_help, .custom-select_prices");
+
+  // Обработчик клика для выбора опции в каждом селекте
+  selects.forEach(function (select) {
+    var selectDropdown = select.querySelector(".select-dropdown");
+    var selectOptions = select.querySelectorAll(".select-option");
+    selectOptions.forEach(function (option) {
+      option.addEventListener("click", function () {
+        var selectedValue = option.getAttribute("data-value");
+        var tabContent = document.querySelector("#".concat(selectedValue));
+        function hideTabContent() {
+          content.forEach(function (item) {
+            item.style.display = "none";
+          });
+          tab.forEach(function (item) {
+            item.classList.remove(activeClass);
+          });
+        }
+        hideTabContent();
+        tabContent.style.display = "block";
+      });
+    });
+  });
+
+  // Закрываем выпадающий список при клике вне его области
+  document.addEventListener("click", function (event) {
+    if (!event.target.matches(".select-selected")) {
+      selects.forEach(function (select) {
+        var selectDropdown = select.querySelector(".select-dropdown");
+        selectDropdown.classList.remove("show");
+      });
+    }
+  });
+};
+var qaTabs = document.querySelector(".qaTabs");
+if (qaTabs) {
+  tabs(".qaTabs__titles", ".qaTabs__title", ".qaTabs__item", "qaTabs__title_active");
+}
+var helpTabs = document.querySelector(".helpTabs");
+if (helpTabs) {
+  tabs(".helpTabs__titles", ".helpTabs__title", ".helpTabs__item", "helpTabs__title_active");
+}
+var pricesTabs = document.querySelector(".pricesTabs");
+if (pricesTabs) {
+  tabs(".pricesTabs__titles", ".pricesTabs__title", ".pricesTabs__item", "pricesTabs__title_active");
+}
+
+/***/ }),
+
 /***/ "./src/js/import/modules.js":
 /*!**********************************!*\
   !*** ./src/js/import/modules.js ***!
@@ -246,7 +483,7 @@ window.addEventListener('scroll', updateActiveStep);
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _modules_header_header__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! %modules%/header/header */ "./src/blocks/modules/header/header.js");
 /* harmony import */ var _modules_header_header__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_modules_header_header__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _modules_page1_page1__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! %modules%/page1/page1 */ "./src/blocks/modules/page1/page1.js");
+/* harmony import */ var _modules_screen1_screen1__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! %modules%/screen1/screen1 */ "./src/blocks/modules/screen1/screen1.js");
 /* harmony import */ var _modules_partnersIntegrations_partnersIntegrations__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! %modules%/partnersIntegrations/partnersIntegrations */ "./src/blocks/modules/partnersIntegrations/partnersIntegrations.js");
 /* harmony import */ var _modules_getReadyShop_getReadyShop__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! %modules%/getReadyShop/getReadyShop */ "./src/blocks/modules/getReadyShop/getReadyShop.js");
 /* harmony import */ var _modules_startSteps_startSteps__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! %modules%/startSteps/startSteps */ "./src/blocks/modules/startSteps/startSteps.js");
@@ -254,6 +491,21 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _modules_reviews_reviews__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! %modules%/reviews/reviews */ "./src/blocks/modules/reviews/reviews.js");
 /* harmony import */ var _modules_footer_footer__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! %modules%/footer/footer */ "./src/blocks/modules/footer/footer.js");
 /* harmony import */ var _modules_footer_footer__WEBPACK_IMPORTED_MODULE_6___default = /*#__PURE__*/__webpack_require__.n(_modules_footer_footer__WEBPACK_IMPORTED_MODULE_6__);
+/* harmony import */ var _modules_customSelect_customSelect__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! %modules%/customSelect/customSelect */ "./src/blocks/modules/customSelect/customSelect.js");
+/* harmony import */ var _modules_customSelect_customSelect__WEBPACK_IMPORTED_MODULE_7___default = /*#__PURE__*/__webpack_require__.n(_modules_customSelect_customSelect__WEBPACK_IMPORTED_MODULE_7__);
+/* harmony import */ var _modules_popups_popups__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! %modules%/popups/popups */ "./src/blocks/modules/popups/popups.js");
+/* harmony import */ var _modules_popups_popups__WEBPACK_IMPORTED_MODULE_8___default = /*#__PURE__*/__webpack_require__.n(_modules_popups_popups__WEBPACK_IMPORTED_MODULE_8__);
+/* harmony import */ var _modules_accordion_accordion__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! %modules%/accordion/accordion */ "./src/blocks/modules/accordion/accordion.js");
+/* harmony import */ var _modules_accordion_accordion__WEBPACK_IMPORTED_MODULE_9___default = /*#__PURE__*/__webpack_require__.n(_modules_accordion_accordion__WEBPACK_IMPORTED_MODULE_9__);
+/* harmony import */ var _modules_tabs_tabs__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! %modules%/tabs/tabs */ "./src/blocks/modules/tabs/tabs.js");
+/* harmony import */ var _modules_tabs_tabs__WEBPACK_IMPORTED_MODULE_10___default = /*#__PURE__*/__webpack_require__.n(_modules_tabs_tabs__WEBPACK_IMPORTED_MODULE_10__);
+/* harmony import */ var _modules_pagePrices_pagePrices__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! %modules%/pagePrices/pagePrices */ "./src/blocks/modules/pagePrices/pagePrices.js");
+/* harmony import */ var _modules_pagePrices_pagePrices__WEBPACK_IMPORTED_MODULE_11___default = /*#__PURE__*/__webpack_require__.n(_modules_pagePrices_pagePrices__WEBPACK_IMPORTED_MODULE_11__);
+
+
+
+
+
 
 
 

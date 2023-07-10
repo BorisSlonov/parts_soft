@@ -29,7 +29,7 @@ window.addEventListener("DOMContentLoaded", () => {
     });
 
     function setMainPaddingTop() {
-        var headerHeight = document.querySelector('.header').offsetHeight;
+        let headerHeight = document.querySelector('.header').offsetHeight;
         document.querySelector('.main').style.paddingTop = headerHeight + 'px';
     }
 

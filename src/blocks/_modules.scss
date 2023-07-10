@@ -1,7 +1,16 @@
-//index
 @import "modules/btn/btn";
+@import "modules/sliders/sliders";
+@import "modules/customSelect/customSelect";
+@import "modules/popups/popups";
+@import "modules/accordion/accordion";
+@import "modules/tabs/tabs";
+
 @import "modules/header/header";
-@import "modules/page1/page1";
+@import "modules/footer/footer";
+
+
+//index
+@import "modules/screen1/screen1";
 @import "modules/partnersIntegrations/partnersIntegrations";
 @import "modules/goodSales/goodSales";
 @import "modules/apiServices/apiServices";
@@ -12,8 +21,36 @@
 @import "modules/reviews/reviews";
 @import "modules/news/news";
 @import "modules/lastForm/lastForm";
-@import "modules/footer/footer";
-@import "modules/sliders/sliders";
 
 //ourClients
 @import "modules/pageOurClients/pageOurClients";
+
+//aboutUs
+@import "modules/pageAboutUs/pageAboutUs";
+@import "modules/linksBlock/linksBlock";
+@import "modules/sectionContacts/sectionContacts";
+@import "modules/sectionSubscribe/sectionSubscribe";
+@import "modules/sectionMap/sectionMap";
+@import "modules/sectionRequisites/sectionRequisites";
+
+//qa
+@import "modules/pageQa/pageQa";
+
+//updateNews
+@import "modules/pageUpdateNews/pageUpdateNews";
+@import "modules/newsGrid/newsGrid";
+
+//help
+@import "modules/pageHelp/pageHelp";
+@import "modules/watchVideo/watchVideo";
+
+//suppliers
+@import "modules/pageSuppliers/pageSuppliers";
+@import "modules/howGetPrice/howGetPrice";
+@import "modules/suppliersGrid/suppliersGrid";
+
+//supplier
+@import "modules/pageSupplier/pageSupplier";
+
+//prices
+@import "modules/pagePrices/pagePrices";

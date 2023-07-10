@@ -11,6 +11,10 @@ body {
     line-height: 1.4;
     scroll-behavior: smooth;
     color: var(--black);
+
+    @media(max-width: 999px) {
+        font-size: 16px;
+    }
 }
 
 body {
@@ -33,7 +37,7 @@ main {
     flex-grow: 1;
 }
 
-footer {
+.section_lastFormSection {
     flex-shrink: 0;
 }
 
@@ -62,6 +66,10 @@ h4 {
 
 .green {
     color: var(--green);
+}
+
+.mt20 {
+    margin-top: 20px;
 }
 
 .greenLink {
@@ -102,15 +110,15 @@ h4 {
 .h1 {
     font-size: 45px;
 
-    @media(max-width:1000px) {
+    @media(max-width:999px) {
         font-size: 36px;
     }
 
-    @media(max-width:768px) {
+    @media(max-width:767px) {
         font-size: 30px;
     }
 
-    @media(max-width:425px) {
+    @media(max-width:424px) {
         font-size: 26px;
     }
 }
@@ -119,11 +127,11 @@ h4 {
     font-size: 38px;
     margin-bottom: 50px;
 
-    @media(max-width:1000px) {
+    @media(max-width:999px) {
         font-size: 32px;
     }
 
-    @media(max-width:768px) {
+    @media(max-width:767px) {
         font-size: 26px;
         margin-bottom: 25px;
     }
@@ -131,7 +139,7 @@ h4 {
     &_video {
         margin-bottom: 0;
 
-        @media(max-width:768px) {
+        @media(max-width:767px) {
             margin-bottom: 0;
         }
     }
@@ -139,9 +147,14 @@ h4 {
     &_getReadyShop {
         margin-bottom: 20px;
 
-        @media(max-width:768px) {
+        @media(max-width:767px) {
             margin-bottom: 15px;
         }
+    }
+
+    &_sectionContacts {
+        text-align: center;
+        margin-bottom: 15px;
     }
 
     &_center {
@@ -149,7 +162,7 @@ h4 {
     }
 
     &_mb30 {
-        margin-bottom: 30px;
+        margin-bottom: 25px;
 
     }
 }
@@ -171,9 +184,9 @@ h4 {
 }
 
 .section {
-    padding: 60px 0;
+    padding: 50px 0;
 
-    &_page1 {
+    &_screen1 {
         padding-bottom: 0;
     }
 
@@ -181,4 +194,169 @@ h4 {
         padding: 30px 0;
     }
 
+}
+
+.searchInput {
+    position: relative;
+
+    &::after {
+        content: '';
+        position: absolute;
+        right: 10px;
+        top: 50%;
+        transform: translateY(-50%);
+        width: 24px;
+        height: 24px;
+        background-size: contain;
+        background-repeat: no-repeat;
+        background-image: url('../img/sprites/searchInput.svg');
+    }
+
+    &__input {
+        display: block;
+        width: 100%;
+        border: 1px solid var(--grey);
+        border-radius: 5px;
+        color: #BFBFBF;
+        padding: 10px 35px 10px 10px;
+        font-family: Open Sans;
+        font-size: 16px;
+    }
+}
+
+.linkWithIcon {
+    position: relative;
+    display: block;
+    padding-left: 34px;
+
+    &::before {
+        content: '';
+        position: absolute;
+        width: 32px;
+        height: 32px;
+        left: 0;
+        top: 50%;
+        transform: translateY(-50%);
+        background-size: contain;
+        background-repeat: no-repeat;
+        @media(max-width:999px) {
+            width: 24px;
+            height: 24px;
+        }
+    }
+
+    &_rocket {
+        &::before {
+            background-image: url('../img/sprites/hRocket.svg');
+        }
+    }
+
+    &_person {
+        &::before {
+            background-image: url('../img/sprites/hPerson.svg');
+        }
+    }
+
+    &_dialogs {
+        &::before {
+            background-image: url('../img/sprites/hDialogs.svg');
+        }
+    }
+
+    &_cart {
+        &::before {
+            background-image: url('../img/sprites/hCart.svg');
+        }
+    }
+
+    &_car {
+        &::before {
+            background-image: url('../img/sprites/hCar.svg');
+        }
+    }
+
+    &_price {
+        &::before {
+            background-image: url('../img/sprites/hPrice.svg');
+        }
+    }
+
+    
+    &_cloud {
+        &::before {
+            background-image: url('../img/sprites/hCloud.svg');
+        }
+    }
+
+    &_docs {
+        &::before {
+            background-image: url('../img/sprites/hDocs.svg');
+        }
+    }
+
+    &_house {
+        &::before {
+            background-image: url('../img/sprites/hHouse.svg');
+        }
+    }
+
+    &_request {
+        &::before {
+            background-image: url('../img/sprites/hRequest.svg');
+        }
+    }
+
+    &_service {
+        &::before {
+            background-image: url('../img/sprites/hService.svg');
+        }
+    }
+
+    &_book {
+        &::before {
+            background-image: url('../img/sprites/hBook.svg');
+        }
+    }
+
+    &_site {
+        &::before {
+            background-image: url('../img/sprites/hSite.svg');
+        }
+    }
+
+    &_star {
+        &::before {
+            background-image: url('../img/sprites/hPerson.svg');
+        }
+    }
+
+    &_api {
+        &::before {
+            background-image: url('../img/sprites/hApi.svg');
+        }
+    }
+
+    &_catalogs {
+        &::before {
+            background-image: url('../img/sprites/hCatalogs.svg');
+        }
+    }
+
+    &_hand {
+        &::before {
+            background-image: url('../img/sprites/hHand.svg');
+        }
+    }
+
+    &_qa {
+        &::before {
+            background-image: url('../img/sprites/hQa.svg');
+        }
+    }
+
+    &_policy {
+        &::before {
+            background-image: url('../img/sprites/hPolicy.svg');
+        }
+    }
 }

@@ -3,6 +3,8 @@ Swiper.use([Navigation, Breakpoints, Autoplay]);
 
 const swiperPartnersIntegrations = new Swiper('.swiperPartnersIntegrations', {
     autoplay: true,
+    delay: 2000,
+    loop: true,
     // https://swiperjs.com/swiper-api#param-loop
     //     loop: true,
     //     Set to true to enable continuous loop mode
@@ -15,7 +17,7 @@ const swiperPartnersIntegrations = new Swiper('.swiperPartnersIntegrations', {
     breakpoints: {
         // Когда ширина экрана больше или равна 1000px
         1000: {
-            slidesPerView: 5,
+            slidesPerView: 4,
             loop: true,
             loopAdditionalSlides: 2,
         },
@@ -36,21 +38,21 @@ const swiperPartnersIntegrations = new Swiper('.swiperPartnersIntegrations', {
 
 const breakpoint = window.matchMedia('(max-width: 767px)');
 const arrowsWrapper = document.querySelector('.partnersIntegrations__arrowsWrapper');
+if (arrowsWrapper) {
+    const moveArrowsWrapper = function () {
+        const itemContainerFirst = document.querySelector('.partnersIntegrations__item_arrows');
+        const itemContainerLast = document.querySelector('.partnersIntegrations__item:last-child');
 
-const moveArrowsWrapper = function () {
-    const itemContainerFirst = document.querySelector('.partnersIntegrations__item_arrows');
-    const itemContainerLast = document.querySelector('.partnersIntegrations__item:last-child');
+        if (breakpoint.matches) {
+            // Переместить в partnersIntegrations__item:last-child
+            itemContainerLast.appendChild(arrowsWrapper);
+        } else {
+            // Переместить в partnersIntegrations__item:first-child
+            itemContainerFirst.appendChild(arrowsWrapper);
+        }
+    };
 
-    if (breakpoint.matches) {
-        // Переместить в partnersIntegrations__item:last-child
-        itemContainerLast.appendChild(arrowsWrapper);
-    } else {
-        // Переместить в partnersIntegrations__item:first-child
-        itemContainerFirst.appendChild(arrowsWrapper);
-    }
-};
+    moveArrowsWrapper(); // Выполнить в начале, чтобы инициализировать положение
 
-moveArrowsWrapper(); // Выполнить в начале, чтобы инициализировать положение
-
-breakpoint.addEventListener('change', moveArrowsWrapper);
-
+    breakpoint.addEventListener('change', moveArrowsWrapper);
+}

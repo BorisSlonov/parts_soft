@@ -1,0 +1,106 @@
+.pricesTabs {
+    &__titles {
+        position: relative;
+        display: flex;
+        justify-content: space-between;
+        gap: 20px;
+
+        &::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 1px;
+            width: 100%;
+            background-color: #D9D9D9;
+        }
+    }
+
+    &__title {
+        position: relative;
+        z-index: 5;
+        flex-basis: 25%;
+        padding: 20px;
+        border: 1px solid #D9D9D9;
+        border-top-left-radius: 5px;
+        border-top-right-radius: 5px;
+        transition: all .25s;
+        cursor: pointer;
+
+        &:hover {
+            color: #fff;
+            background-color: var(--green);
+            border-color: var(--green);
+        }
+
+        &_active {
+            color: #fff;
+            background-color: var(--green);
+            border-color: var(--green);
+        }
+    }
+
+    &__body {
+        margin-top: 40px;
+    }
+}
+
+.pricesTable {
+    &__row {
+        display: flex;
+        gap: 20px;
+
+        &.hide {
+            display: none;
+        }
+
+        &:not(:first-child) {
+            margin-top: 20px;
+        }
+    }
+
+    &__name {
+        display: flex;
+        align-items: center;
+        flex-basis: 25%;
+        font-weight: 500;
+        padding: 25px 15px;
+        background-color: #F6F6F6;
+    }
+
+    &__content {
+        flex-basis: 75%;
+        display: flex;
+        gap: 20px;
+    }
+
+    &__item {
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+        padding: 25px 15px;
+        background-color: #F6F6F6;
+
+        &_col {
+            flex-direction: column;
+        }
+    }
+
+    &__svg {
+        max-width: 20px;
+    }
+
+    &__p {
+        font-size: 16px;
+    }
+
+    &__footer {
+        margin-top: 20px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+    }
+}
