@@ -161,11 +161,27 @@ window.addEventListener("DOMContentLoaded", function () {
   \*******************************************************/
 /***/ (() => {
 
-// заголовки в меню создаются динамически, исходя из контента в singleArticle__content
-// если внутри singleArticle__item кроме h2 есть h3, создается подменю
 function createMenu() {
   var navMenu = document.querySelector('.singleArticle__navMenu');
   var items = document.querySelectorAll('.singleArticle__item');
+  var menuItemMap = new Map(); // Сопоставление заголовка и пункта меню
+
+  // Функция для проверки видимости заголовка
+  function isHeadingVisible(heading) {
+    var rect = heading.getBoundingClientRect();
+    return rect.top >= 0 && rect.bottom <= (window.innerHeight || document.documentElement.clientHeight);
+  }
+
+  // Функция для добавления класса активности к пункту меню
+  function setActiveMenuItem(menuItem) {
+    var activeMenuItem = navMenu.querySelector('.singleArticle__menuItem.active');
+    if (activeMenuItem) {
+      activeMenuItem.classList.remove('active');
+    }
+    menuItem.classList.add('active');
+  }
+
+  // Создание пунктов меню и назначение обработчиков
   items.forEach(function (item) {
     var h2 = item.querySelector('.singleArticle__heading--h2');
     var h3s = item.querySelectorAll('.singleArticle__heading--h3');
@@ -197,6 +213,9 @@ function createMenu() {
       h2.scrollIntoView({
         behavior: 'smooth'
       });
+
+      // Добавляем класс активности для текущего пункта меню
+      setActiveMenuItem(menuItem);
     });
     menuItem.appendChild(h2Wrapper);
     if (h3s.length > 0) {
@@ -211,12 +230,38 @@ function createMenu() {
           h3.scrollIntoView({
             behavior: 'smooth'
           });
+
+          // Добавляем класс активности для текущего пункта меню
+          setActiveMenuItem(menuItem);
         });
       });
       menuItem.appendChild(h3List);
       h3List.classList.add('singleArticle__h3List--collapsed');
     }
     navMenu.appendChild(menuItem);
+
+    // Сопоставление заголовка и пункта меню
+    menuItemMap.set(h2, menuItem);
+    h3s.forEach(function (h3) {
+      menuItemMap.set(h3, menuItem);
+    });
+  });
+
+  // Создание Intersection Observer для проверки видимости заголовков
+  var observer = new IntersectionObserver(function (entries) {
+    entries.forEach(function (entry) {
+      var heading = entry.target;
+      var menuItem = menuItemMap.get(heading);
+      if (entry.isIntersecting) {
+        setActiveMenuItem(menuItem);
+      }
+    });
+  });
+
+  // Начало наблюдения за заголовками
+  var headings = Array.from(document.querySelectorAll('.singleArticle__heading--h2, .singleArticle__heading--h3'));
+  headings.forEach(function (heading) {
+    observer.observe(heading);
   });
 }
 createMenu();

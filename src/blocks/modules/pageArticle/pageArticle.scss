@@ -179,3 +179,8 @@
         visibility: visible;
     }
 }
+
+
+.singleArticle__menuItem.active .singleArticle__h2Span {
+    color: var(--green);
+}
