@@ -113,6 +113,12 @@ function createMenu() {
     headings.forEach((heading) => {
         observer.observe(heading);
     });
+
+    if (window.innerWidth >= 1000) {
+        document.querySelectorAll('.singleArticle__h3List').forEach(i => {
+            i.classList.add('singleArticle__h3List--expanded');
+        })
+    }
 }
 
 createMenu();

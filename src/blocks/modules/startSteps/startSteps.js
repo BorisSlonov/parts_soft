@@ -1,52 +1,63 @@
 const steps = document.querySelectorAll('.startSteps__num');
 const viewportHeight = window.innerHeight;
 
-let activeStepIndexes = new Set();
+let activeStepIndices = [];
+let activeTimeout = null;
 
-function setActiveSteps(index) {
-  const currentIndexes = Array.from(activeStepIndexes);
-  const newIndexes = currentIndexes.filter(i => i <= index);
-  newIndexes.push(index);
-  activeStepIndexes = new Set(newIndexes);
-}
-
-function removeInactiveSteps() {
-  const currentIndexes = Array.from(activeStepIndexes);
-  currentIndexes.forEach(index => {
-    const rect = steps[index].getBoundingClientRect();
-    const elemTop = rect.top;
-    const elemBottom = rect.bottom;
-
-    if (elemTop > viewportHeight || elemBottom < 0) {
-      activeStepIndexes.delete(index);
-    }
+function setActiveSteps(indices) {
+  activeStepIndices.forEach((index) => {
+    steps[index]?.classList.remove('startSteps__num_active');
   });
+
+  indices.forEach((index) => {
+    steps[index]?.classList.add('startSteps__num_active');
+  });
+
+  activeStepIndices = indices;
 }
 
 function updateActiveSteps() {
   const scrollPosition = window.scrollY;
+  const newActiveIndices = [];
 
-  steps.forEach((step, index) => {
-    const rect = step.getBoundingClientRect();
+  for (let i = 0; i < steps.length; i++) {
+    const rect = steps[i].getBoundingClientRect();
     const elemTop = rect.top;
     const elemBottom = rect.bottom;
 
-    if (scrollPosition >= 0 && elemTop <= viewportHeight / 2) {
-      setActiveSteps(index);
-    } else if (scrollPosition <= 0 && elemBottom >= viewportHeight / 2) {
-      setActiveSteps(index);
+    if (
+      (scrollPosition >= 0 && elemTop <= viewportHeight / 2) ||
+      (scrollPosition <= 0 && elemBottom >= viewportHeight / 1.5)
+    ) {
+      newActiveIndices.push(i);
     }
-  });
+  }
 
-  removeInactiveSteps();
-
-  steps.forEach((step, index) => {
-    if (activeStepIndexes.has(index)) {
-      step.classList.add('startSteps__num_active');
-    } else {
-      step.classList.remove('startSteps__num_active');
+  if (newActiveIndices.length > 0) {
+    if (activeTimeout !== null) {
+      clearTimeout(activeTimeout);
+      activeTimeout = null;
     }
-  });
+
+    setActiveSteps(newActiveIndices);
+  } else if (activeTimeout === null) {
+    activeTimeout = setTimeout(() => {
+      setActiveSteps([]);
+      activeTimeout = null;
+    }, 600);
+  }
 }
 
-window.addEventListener('scroll', updateActiveSteps);
+let isThrottled = false;
+
+function throttleScroll() {
+  if (!isThrottled) {
+    requestAnimationFrame(() => {
+      updateActiveSteps();
+      isThrottled = false;
+    });
+    isThrottled = true;
+  }
+}
+
+window.addEventListener('scroll', throttleScroll);

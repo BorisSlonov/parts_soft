@@ -2242,12 +2242,11 @@ h4 {
   color: #fff;
   font-weight: 700;
   font-size: 36px;
-  transition: all 0.5s;
+  transition: all 1.25s;
 }
 
 .startSteps__num_active {
   background-color: var(--green);
-  transition: all 0.5s;
 }
 
 .startSteps__p {
@@ -2730,8 +2729,6 @@ h4 {
   border-color: #ccc;
   max-height: 500px;
   width: 100%;
-  max-width: 220px;
-  flex-shrink: 0;
   overflow-y: auto;
 }
 
@@ -2755,10 +2752,15 @@ h4 {
   margin-bottom: 40px;
 }
 
+.singleArticle__menuWrapper {
+  flex-basis: 30%;
+}
+
 .singleArticle__content {
   display: flex;
   flex-direction: column;
   gap: 30px;
+  flex-basis: 70%;
 }
 
 .singleArticle__h2Wrapper {

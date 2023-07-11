@@ -291,6 +291,11 @@ function createMenu() {
   headings.forEach(function (heading) {
     observer.observe(heading);
   });
+  if (window.innerWidth >= 1000) {
+    document.querySelectorAll('.singleArticle__h3List').forEach(function (i) {
+      i.classList.add('singleArticle__h3List--expanded');
+    });
+  }
 }
 createMenu();
 
@@ -499,48 +504,54 @@ var swiperscreen1 = new swiper__WEBPACK_IMPORTED_MODULE_0__["default"]('.swipers
 
 var steps = document.querySelectorAll('.startSteps__num');
 var viewportHeight = window.innerHeight;
-var activeStepIndexes = new Set();
-function setActiveSteps(index) {
-  var currentIndexes = Array.from(activeStepIndexes);
-  var newIndexes = currentIndexes.filter(function (i) {
-    return i <= index;
+var activeStepIndices = [];
+var activeTimeout = null;
+function setActiveSteps(indices) {
+  activeStepIndices.forEach(function (index) {
+    var _steps$index;
+    (_steps$index = steps[index]) === null || _steps$index === void 0 ? void 0 : _steps$index.classList.remove('startSteps__num_active');
   });
-  newIndexes.push(index);
-  activeStepIndexes = new Set(newIndexes);
-}
-function removeInactiveSteps() {
-  var currentIndexes = Array.from(activeStepIndexes);
-  currentIndexes.forEach(function (index) {
-    var rect = steps[index].getBoundingClientRect();
-    var elemTop = rect.top;
-    var elemBottom = rect.bottom;
-    if (elemTop > viewportHeight || elemBottom < 0) {
-      activeStepIndexes["delete"](index);
-    }
+  indices.forEach(function (index) {
+    var _steps$index2;
+    (_steps$index2 = steps[index]) === null || _steps$index2 === void 0 ? void 0 : _steps$index2.classList.add('startSteps__num_active');
   });
+  activeStepIndices = indices;
 }
 function updateActiveSteps() {
   var scrollPosition = window.scrollY;
-  steps.forEach(function (step, index) {
-    var rect = step.getBoundingClientRect();
+  var newActiveIndices = [];
+  for (var i = 0; i < steps.length; i++) {
+    var rect = steps[i].getBoundingClientRect();
     var elemTop = rect.top;
     var elemBottom = rect.bottom;
-    if (scrollPosition >= 0 && elemTop <= viewportHeight / 2) {
-      setActiveSteps(index);
-    } else if (scrollPosition <= 0 && elemBottom >= viewportHeight / 2) {
-      setActiveSteps(index);
+    if (scrollPosition >= 0 && elemTop <= viewportHeight / 2 || scrollPosition <= 0 && elemBottom >= viewportHeight / 1.5) {
+      newActiveIndices.push(i);
     }
-  });
-  removeInactiveSteps();
-  steps.forEach(function (step, index) {
-    if (activeStepIndexes.has(index)) {
-      step.classList.add('startSteps__num_active');
-    } else {
-      step.classList.remove('startSteps__num_active');
+  }
+  if (newActiveIndices.length > 0) {
+    if (activeTimeout !== null) {
+      clearTimeout(activeTimeout);
+      activeTimeout = null;
     }
-  });
+    setActiveSteps(newActiveIndices);
+  } else if (activeTimeout === null) {
+    activeTimeout = setTimeout(function () {
+      setActiveSteps([]);
+      activeTimeout = null;
+    }, 600);
+  }
 }
-window.addEventListener('scroll', updateActiveSteps);
+var isThrottled = false;
+function throttleScroll() {
+  if (!isThrottled) {
+    requestAnimationFrame(function () {
+      updateActiveSteps();
+      isThrottled = false;
+    });
+    isThrottled = true;
+  }
+}
+window.addEventListener('scroll', throttleScroll);
 
 /***/ }),
 
