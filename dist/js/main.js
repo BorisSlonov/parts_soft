@@ -524,7 +524,7 @@ function updateActiveSteps() {
     var rect = steps[i].getBoundingClientRect();
     var elemTop = rect.top;
     var elemBottom = rect.bottom;
-    if (scrollPosition >= 0 && elemTop <= viewportHeight / 2 || scrollPosition <= 0 && elemBottom >= viewportHeight / 1.5) {
+    if (scrollPosition >= 0 && elemTop <= viewportHeight / 2 || scrollPosition <= 0 && elemBottom >= viewportHeight / 2) {
       newActiveIndices.push(i);
     }
   }
@@ -538,7 +538,7 @@ function updateActiveSteps() {
     activeTimeout = setTimeout(function () {
       setActiveSteps([]);
       activeTimeout = null;
-    }, 600);
+    }, 1000);
   }
 }
 var isThrottled = false;

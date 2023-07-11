@@ -197,7 +197,11 @@ h4 {
 }
 
 .breadCrumbs {
-    padding-top: 30px;
+    padding-top: 40px;
+
+    @media(max-width:767px) {
+        padding-top: 30px;
+    }
 
     &__a {
         text-decoration: none;

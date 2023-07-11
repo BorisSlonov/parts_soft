@@ -960,7 +960,7 @@ h4 {
 }
 
 .breadCrumbs {
-  padding-top: 30px;
+  padding-top: 40px;
 }
 
 .breadCrumbs__a {
@@ -2242,7 +2242,7 @@ h4 {
   color: #fff;
   font-weight: 700;
   font-size: 36px;
-  transition: all 1.25s;
+  transition: all 1.5s;
 }
 
 .startSteps__num_active {
@@ -2803,8 +2803,8 @@ h4 {
 .singleArticle__arrow {
   flex-shrink: 0;
   position: relative;
-  width: 20px;
-  height: 20px;
+  width: 21px;
+  height: 21px;
   cursor: pointer;
   border-radius: 50%;
   transition: all 0.25s;
@@ -3534,6 +3534,8 @@ h4 {
 
   .pricesTable {
     width: 768px;
+    margin-left: auto;
+    margin-right: auto;
   }
 
   .pricesTable__row {
@@ -3600,6 +3602,10 @@ h4 {
 
   .section {
     padding: 30px 0;
+  }
+
+  .breadCrumbs {
+    padding-top: 30px;
   }
 
   .swiper-pagination-bullet {
@@ -3910,6 +3916,53 @@ h4 {
 
   .supplierInfo__body {
     margin-top: 20px;
+  }
+
+  .pricesTable {
+    font-size: 14px;
+  }
+
+  .pricesTable__row {
+    gap: 0;
+  }
+
+  .pricesTable__row:nth-child(2n+1) {
+    background-color: #F5F5F5;
+  }
+
+  .pricesTable__row:first-child {
+    background-color: #fff;
+  }
+
+  .pricesTable__row:not(:first-child) {
+    margin-top: 0;
+  }
+
+  .pricesTable__name {
+    background-color: transparent;
+    max-width: 100%;
+  }
+
+  .pricesTable__content {
+    gap: 0;
+    max-width: 768px;
+    flex-basis: 75%;
+  }
+
+  .pricesTable__item {
+    background-color: transparent;
+    flex-shrink: 1;
+  }
+
+  .pricesTable__p {
+    font-size: 14px;
+  }
+
+  .pricesTable__footer {
+    flex-direction: column-reverse;
+    gap: 10px;
+    align-items: flex-start;
+    margin-bottom: 10px;
   }
 }
 
