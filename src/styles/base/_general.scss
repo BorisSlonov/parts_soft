@@ -165,6 +165,13 @@ h4 {
         margin-bottom: 25px;
 
     }
+
+    &_border {
+        .h2__span {
+            border-bottom: 2px solid var(--green);
+            padding-bottom: 10px;
+        }
+    }
 }
 
 .main-wrapper {
