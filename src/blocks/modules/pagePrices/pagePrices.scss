@@ -59,10 +59,32 @@
 .pricesTable {
     font-weight: 600;
 
+    display: flex;
+    flex-direction: column;
+
     @media(max-width: 999px) {
+        width: 940px;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    @media(max-width: 767px) {
         width: 768px;
         margin-left: auto;
         margin-right: auto;
+    }
+
+
+    &_sobstvennost {
+        max-width: 1100px;
+        margin-left: auto;
+        margin-right: auto;
+
+        @media(max-width: 767px) {
+            width: 620px;
+            margin-left: auto;
+            margin-right: auto;
+        }
     }
 
     @media(max-width:767px) {
@@ -72,10 +94,6 @@
     &__row {
         display: flex;
         gap: 20px;
-
-        @media(max-width: 999px) {
-            flex-shrink: 0;
-        }
 
         @media(max-width:767px) {
             gap: 0;
@@ -104,6 +122,8 @@
     }
 
     &__name {
+        position: relative;
+        gap: 5px;
         display: flex;
         align-items: center;
         flex-basis: 25%;
@@ -111,15 +131,27 @@
         background-color: #F6F6F6;
 
         @media(max-width: 999px) {
-            flex-shrink: 0;
             font-size: 14px;
-            max-width: 120px;
         }
 
         @media(max-width:767px) {
             background-color: transparent;
             max-width: 100%;
         }
+
+        &_inline {
+            display: inline-flex;
+            flex-wrap: wrap;
+        }
+    }
+
+    &__podCost {
+        display: flex;
+        text-align: center;
+        justify-content: center;
+        align-items: center;
+        background-color: #F6F6F6;
+        padding: 25px;
     }
 
     &__content {
@@ -127,17 +159,11 @@
         display: flex;
         gap: 20px;
 
-        @media(max-width: 999px) {
-            flex-shrink: 0;
-            flex-basis: 100%;
-            max-width: 135px;
+        &_dop {
+            flex-direction: column;
         }
 
-        @media(max-width:767px) {
-            gap: 0;
-            max-width: 768px;
-            flex-basis: 75%;
-        }
+
     }
 
     &__item {
@@ -151,22 +177,18 @@
         background-color: #F6F6F6;
         gap: 5px;
 
-        @media(max-width: 999px) {
-            flex-shrink: 0;
-        }
+
 
         @media(max-width:767px) {
             background-color: transparent;
-            flex-shrink: 1;
         }
 
         &_col {
             flex-direction: column;
+            justify-content: space-between;
         }
 
-        &_tip {
-            cursor: pointer;
-        }
+
     }
 
     &__svg {
@@ -176,6 +198,7 @@
     &__p {
         font-size: 16px;
         font-weight: 400;
+
         @media(max-width:767px) {
             font-size: 14px;
         }
@@ -193,6 +216,14 @@
         &:hover {
             background-color: var(--green);
         }
+
+        &_green {
+            background-color: var(--green);
+
+            &:hover {
+                background-color: var(--black);
+            }
+        }
     }
 
     &__footer {
@@ -200,12 +231,41 @@
         display: flex;
         align-items: center;
         justify-content: space-between;
+
         @media(max-width:767px) {
             flex-direction: column-reverse;
             gap: 10px;
             align-items: flex-start;
             margin-bottom: 10px;
         }
+
+        &_col {
+            margin-top: 30px;
+            flex-direction: column;
+            gap: 15px;
+            align-items: flex-start;
+        }
+    }
+
+    &__adsRow {
+        width: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 20px;
+    }
+
+    &__link {
+        color: var(--green);
+        transition: all .25s;
+
+        &:hover {
+            color: var(--darkGreen);
+        }
+    }
+
+    &.hide {
+        display: none;
     }
 }
 
@@ -215,7 +275,7 @@
     font-size: 14px;
     font-weight: 400;
     position: absolute;
-    bottom: -150%;
+    top: 100%;
     left: 50%;
     transform: translateX(-50%) scale(0);
     width: 300px;
@@ -225,7 +285,8 @@
     transition: all .25s;
 }
 
-.pricesTable__item_tip:hover .pricesTableTip {
+.pricesTable__name:hover .pricesTableTip,
+.pricesTable__item:hover .pricesTableTip {
     transform: translateX(-50%) scale(1);
 }
 
@@ -238,4 +299,41 @@
     width: 10px;
     height: 10px;
     background-color: #ffffff;
+}
+
+.tariffsToggle {
+    display: flex;
+    width: 500px;
+    border-radius: 10px;
+    box-shadow: 1px 2px 7px 0px rgba(0, 0, 0, 0.25) inset;
+    background: #F2F2F2;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 30px;
+
+    @media(max-width:767px) {
+        width: 100%;
+    }
+
+    &__btn {
+        flex-basis: 50%;
+        border-radius: 10px;
+        border: none;
+        padding: 20px;
+        transition: all .25s;
+        background-color: transparent;
+        cursor: pointer;
+        font-family: Open Sans;
+        font-size: 18px;
+        font-weight: 600;
+
+        @media(max-width:767px) {
+            font-size: 14px;
+        }
+
+        &.active {
+            color: #fff;
+            background-color: var(--green);
+        }
+    }
 }

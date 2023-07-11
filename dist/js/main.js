@@ -307,18 +307,45 @@ createMenu();
   \*****************************************************/
 /***/ (() => {
 
-var buttons = document.querySelectorAll('.btn_pricesTableOpenHidden');
-var buttonSpans = document.querySelectorAll('.btn_pricesTableOpenHidden .btn__span');
-var rows = document.querySelectorAll('.pricesTable__row_openHidden');
-buttons.forEach(function (button, index) {
-  button.addEventListener('click', function () {
-    rows.forEach(function (row) {
-      row.classList.toggle('hide');
+if (document.querySelectorAll('.btn_pricesTableOpenHidden')) {
+  var buttons = document.querySelectorAll('.btn_pricesTableOpenHidden');
+  var buttonSpans = document.querySelectorAll('.btn_pricesTableOpenHidden .btn__span');
+  var rows = document.querySelectorAll('.pricesTable__row_openHidden');
+  buttons.forEach(function (button, index) {
+    button.addEventListener('click', function () {
+      rows.forEach(function (row) {
+        row.classList.toggle('hide');
+      });
+      var buttonText = buttonSpans[index].textContent.trim();
+      buttonSpans[index].textContent = buttonText === 'Свернуть' ? 'Развернуть все' : 'Свернуть';
     });
-    var buttonText = buttonSpans[index].textContent.trim();
-    buttonSpans[index].textContent = buttonText === 'Свернуть' ? 'Развернуть все' : 'Свернуть';
   });
-});
+}
+if (document.querySelector('.tariffsToggle__btn_parts')) {
+  // Получите ссылки на элементы кнопок и блоков
+  var btnParts = document.querySelector('.tariffsToggle__btn_parts');
+  var btnOwn = document.querySelector('.tariffsToggle__btn_own');
+  var tariffParts = document.querySelector('.pricesTable_tariffParts');
+  var tariffOwn = document.querySelector('.pricesTable_tariffOwn');
+
+  // Добавьте обработчик события клика на кнопку btnParts
+  btnParts.addEventListener('click', function () {
+    tariffParts.classList.remove('hide'); // Уберите класс hide с pricesTable_tariffParts
+    tariffOwn.classList.add('hide'); // Добавьте класс hide к pricesTable_tariffOwn
+
+    btnParts.classList.add('active'); // Добавьте класс active к btnParts
+    btnOwn.classList.remove('active'); // Уберите класс active с btnOwn
+  });
+
+  // Добавьте обработчик события клика на кнопку btnOwn
+  btnOwn.addEventListener('click', function () {
+    tariffParts.classList.add('hide'); // Добавьте класс hide к pricesTable_tariffParts
+    tariffOwn.classList.remove('hide'); // Уберите класс hide с pricesTable_tariffOwn
+
+    btnParts.classList.remove('active'); // Уберите класс active с btnParts
+    btnOwn.classList.add('active'); // Добавьте класс active к btnOwn
+  });
+}
 
 /***/ }),
 
