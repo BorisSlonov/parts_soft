@@ -5,6 +5,7 @@ import "%modules%/getReadyShop/getReadyShop";
 import "%modules%/videoSection/videoSection";
 import "%modules%/startSteps/startSteps";
 import "%modules%/reviews/reviews";
+import "%modules%/lastForm/lastForm";
 import "%modules%/footer/footer";
 
 import "%modules%/customSelect/customSelect";

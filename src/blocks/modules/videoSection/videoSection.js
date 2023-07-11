@@ -1,7 +1,7 @@
 function updateSubtitlePosition() {
-    var subtitleVideoTeleport = document.querySelector('.subtitle_videoTeleport');
-    var subtitleTeleportIn = document.querySelector('.subtitleTeleportIn');
-    var subtitleTeleportOut = document.querySelector('.subtitleTeleportOut');
+    let subtitleVideoTeleport = document.querySelector('.subtitle_videoTeleport');
+    let subtitleTeleportIn = document.querySelector('.subtitleTeleportIn');
+    let subtitleTeleportOut = document.querySelector('.subtitleTeleportOut');
 
     if (window.innerWidth <= 767) {
         subtitleTeleportIn.appendChild(subtitleVideoTeleport);
@@ -16,9 +16,9 @@ if (document.querySelector('.subtitle_videoTeleport')) {
 }
 
 function updatebtnPosition() {
-    var btnVideoTeleport = document.querySelector('.btn_videoTeleport');
-    var btnTeleportIn = document.querySelector('.btnTeleportIn');
-    var btnTeleportOut = document.querySelector('.btnTeleportOut');
+    let btnVideoTeleport = document.querySelector('.btn_videoTeleport');
+    let btnTeleportIn = document.querySelector('.btnTeleportIn');
+    let btnTeleportOut = document.querySelector('.btnTeleportOut');
 
     if (window.innerWidth <= 767) {
         btnTeleportIn.appendChild(btnVideoTeleport);

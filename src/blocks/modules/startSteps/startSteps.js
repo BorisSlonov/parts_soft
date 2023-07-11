@@ -1,30 +1,52 @@
 const steps = document.querySelectorAll('.startSteps__num');
 const viewportHeight = window.innerHeight;
 
-let activeStepIndex = -1;
+let activeStepIndexes = new Set();
 
-function setActiveStep(index) {
-    if (activeStepIndex !== index) {
-        steps[activeStepIndex]?.classList.remove('startSteps__num_active');
-        steps[index]?.classList.add('startSteps__num_active');
-        activeStepIndex = index;
-    }
+function setActiveSteps(index) {
+  const currentIndexes = Array.from(activeStepIndexes);
+  const newIndexes = currentIndexes.filter(i => i <= index);
+  newIndexes.push(index);
+  activeStepIndexes = new Set(newIndexes);
 }
 
-function updateActiveStep() {
-    const scrollPosition = window.scrollY;
+function removeInactiveSteps() {
+  const currentIndexes = Array.from(activeStepIndexes);
+  currentIndexes.forEach(index => {
+    const rect = steps[index].getBoundingClientRect();
+    const elemTop = rect.top;
+    const elemBottom = rect.bottom;
 
-    for (let i = 0; i < steps.length; i++) {
-        const rect = steps[i].getBoundingClientRect();
-        const elemTop = rect.top;
-        const elemBottom = rect.bottom;
-
-        if (scrollPosition >= 0 && elemTop <= viewportHeight / 2) {
-            setActiveStep(i);
-        } else if (scrollPosition <= 0 && elemBottom >= viewportHeight / 2) {
-            setActiveStep(i);
-        }
+    if (elemTop > viewportHeight || elemBottom < 0) {
+      activeStepIndexes.delete(index);
     }
+  });
 }
 
-window.addEventListener('scroll', updateActiveStep);
+function updateActiveSteps() {
+  const scrollPosition = window.scrollY;
+
+  steps.forEach((step, index) => {
+    const rect = step.getBoundingClientRect();
+    const elemTop = rect.top;
+    const elemBottom = rect.bottom;
+
+    if (scrollPosition >= 0 && elemTop <= viewportHeight / 2) {
+      setActiveSteps(index);
+    } else if (scrollPosition <= 0 && elemBottom >= viewportHeight / 2) {
+      setActiveSteps(index);
+    }
+  });
+
+  removeInactiveSteps();
+
+  steps.forEach((step, index) => {
+    if (activeStepIndexes.has(index)) {
+      step.classList.add('startSteps__num_active');
+    } else {
+      step.classList.remove('startSteps__num_active');
+    }
+  });
+}
+
+window.addEventListener('scroll', updateActiveSteps);

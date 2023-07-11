@@ -959,6 +959,20 @@ h4 {
   padding-bottom: 0;
 }
 
+.breadCrumbs {
+  padding-top: 30px;
+}
+
+.breadCrumbs__a {
+  text-decoration: none;
+  color: var(--black);
+  transition: all 0.25s;
+}
+
+.breadCrumbs__a:hover {
+  color: var(--green);
+}
+
 .searchInput {
   position: relative;
 }
@@ -1231,7 +1245,7 @@ h4 {
 
 .show {
   opacity: 1;
-  z-index: 1;
+  z-index: 10000;
   max-height: 200px;
 }
 
@@ -1593,7 +1607,16 @@ h4 {
 }
 
 .supplierTabs__title {
+  font-weight: 600;
+  color: var(--grey);
+  font-size: 21px;
   cursor: pointer;
+  transition: all 0.25s;
+}
+
+.supplierTabs__title_active {
+  color: #000;
+  font-size: 30px;
 }
 
 .header {
@@ -3142,6 +3165,10 @@ h4 {
 }
 
 @media (min-width: 767px) {
+  .supplierTabs__titles {
+    height: 40px;
+  }
+
   .contactsCard_sales .contactsCard__h3 {
     font-size: 36px;
   }
@@ -3265,17 +3292,17 @@ h4 {
   .header__list {
     position: fixed;
     z-index: 1000;
-    top: 0;
-    left: -100%;
+    right: -100%;
     width: 100%;
-    height: 100vh;
-    max-height: 100vh;
+    max-width: 320px;
     font-size: 18px;
     flex-direction: column;
     align-items: flex-start;
     overflow: auto;
     transition: all 0.3s;
     justify-content: flex-start;
+    box-shadow: var(--mainBoxShadow);
+    background-color: #fff;
   }
 
   .main-menu {
@@ -3292,12 +3319,12 @@ h4 {
     display: flex;
     flex-direction: column;
     align-items: flex-start;
-    gap: 25px;
+    gap: 0;
     text-align: left;
     padding-left: 15px;
     padding-right: 15px;
     height: auto;
-    padding-top: 80px;
+    padding-top: 15px;
   }
 
   .main-menu__li {
@@ -3327,8 +3354,7 @@ h4 {
   }
 
   .menu_active {
-    left: 0;
-    background-color: #d6d5d5;
+    right: 0;
   }
 
   .header__burger {
@@ -3416,6 +3442,25 @@ h4 {
 
   .news__item {
     flex-basis: calc(50% - 10px);
+  }
+
+  .lastFormSection__item_form {
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .lastFormSection__imgTeleport {
+    margin-bottom: 20px;
+  }
+
+  .lastForm {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
   }
 
   .ourClientsGrid {
@@ -3539,7 +3584,7 @@ h4 {
   }
 
   .h2 {
-    font-size: 26px;
+    font-size: 21px;
     margin-bottom: 25px;
   }
 
@@ -3577,6 +3622,13 @@ h4 {
     margin-bottom: 20px;
   }
 
+  .supplierTabs__title:last-child {
+    width: 100%;
+    padding-bottom: 10px;
+    margin-bottom: 10px;
+    border-bottom: 1px solid #BFBFBF;
+  }
+
   .header__logo {
     width: 25px;
     height: 25px;
@@ -3594,6 +3646,10 @@ h4 {
 
   .header__login-wrapper .btn {
     display: none;
+  }
+
+  .header__list {
+    max-width: 100%;
   }
 
   .footer__body {
@@ -3701,10 +3757,11 @@ h4 {
     display: flex;
     flex-direction: column;
     align-items: center;
+    text-align: center;
   }
 
   .startSteps__body {
-    flex-direction: column;
+    flex-direction: column-reverse;
     gap: 30px;
     padding: 30px 15px;
   }
@@ -3721,6 +3778,11 @@ h4 {
 
   .ourClients__item_img {
     background-image: url("../img/clientsMob.webp");
+  }
+
+  .lastForm {
+    display: flex;
+    flex-direction: column;
   }
 
   .pageOurClients__filter {
@@ -3866,6 +3928,32 @@ h4 {
 
   .news__item {
     flex-basis: 100%;
+  }
+}
+
+@media (min-width: 768px) and (max-width: 999px) {
+  .lastForm .lastForm__input:nth-child(1) {
+    order: 1;
+  }
+
+  .lastForm .lastForm__input:nth-child(2) {
+    order: 3;
+  }
+
+  .lastForm .lastForm__input:nth-child(3) {
+    order: 5;
+  }
+
+  .lastForm .lastForm__textarea {
+    order: 2;
+  }
+
+  .lastForm .btn {
+    order: 4;
+  }
+
+  .lastForm .lastForm__p {
+    order: 6;
   }
 }
 /*# sourceMappingURL=maps/main.css.map */

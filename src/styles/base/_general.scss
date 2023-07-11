@@ -132,7 +132,7 @@ h4 {
     }
 
     @media(max-width:767px) {
-        font-size: 26px;
+        font-size: 21px;
         margin-bottom: 25px;
     }
 
@@ -196,6 +196,20 @@ h4 {
 
 }
 
+.breadCrumbs {
+    padding-top: 30px;
+
+    &__a {
+        text-decoration: none;
+        color: var(--black);
+        transition: all .25s;
+
+        &:hover {
+            color: var(--green);
+        }
+    }
+}
+
 .searchInput {
     position: relative;
 
@@ -228,6 +242,7 @@ h4 {
     position: relative;
     display: block;
     padding-left: 44px;
+
     @media(max-width:999px) {
         padding-left: 34px;
     }
@@ -242,6 +257,7 @@ h4 {
         transform: translateY(-50%);
         background-size: contain;
         background-repeat: no-repeat;
+
         @media(max-width:999px) {
             width: 24px;
             height: 24px;
@@ -284,7 +300,7 @@ h4 {
         }
     }
 
-    
+
     &_cloud {
         &::before {
             background-image: url('../img/sprites/hCloud.svg');

@@ -98,6 +98,23 @@
     </div>
 </header>
         <main class="main">
+            <div class="breadCrumbs">
+                <div class="container">
+                    <div class="breadCrumbs__body">
+                        <a href="/" class="breadCrumbs__a">
+                            <span class="breadCrumbs__span">
+                                Главная /
+                            </span>
+                        </a>
+                        <a href="#" class="breadCrumbs__a">
+                            <span class="breadCrumbs__span green">
+                                О нас
+                            </span>
+                        </a>
+
+                    </div>
+                </div>
+            </div>
             <section class="section section_supplierCard">
     <div class="supplierCard">
         <div class="container">
@@ -164,10 +181,10 @@
     <div class="supplierInfo supplierTabs">
         <div class="container">
             <div class="supplierInfo__header supplierTabs__titles">
-                <h2 class="h2 supplierInfo__h2 supplierTabs__title">
+                <h2 class="supplierTabs__title">
                     Информация о поставщике
                 </h2>
-                <span class="supplierInfo__workName supplierTabs__title">
+                <span class="supplierTabs__title">
                     Подключение и настройка
                 </span>
             </div>
@@ -386,6 +403,7 @@
                         Начните тест-драйв платформы
                         PARTS-SOFT <span class="green">уже сегодня!</span>
                     </h2>
+                    <div class="lastFormSection__imgTeleport"></div>
                     <form action="#" method="post" class="lastForm">
                         <input placeholder="Имя" type="text" name="name" class="lastForm__input">
                         <input placeholder="Телефон" type="tel" name="name" class="lastForm__input">
@@ -396,14 +414,14 @@
                                 Отправить заявку
                             </span>
                         </button>
+                        <p class="lastForm__p">
+                            Нажимая кнопку «Отправить» вы соглашаетесь на обработку
+                            <a href="#" class="greenLink">персональных данных</a>
+                        </p>
                     </form>
-                    <p class="lastForm__p">
-                        Нажимая кнопку «Отправить» вы соглашаетесь на обработку
-                        <a href="#" class="greenLink">персональных данных</a>
-                    </p>
                 </div>
-                <div class="lastFormSection__item">
-                    <img src="img/formScreen.webp" alt="скриншот платформы">
+                <div class="lastFormSection__item lastFormSection__item_imgWrapper">
+                    <img class="lastFormSection__img" src="img/formScreen.webp" alt="скриншот платформы">
                 </div>
             </div>
         </div>

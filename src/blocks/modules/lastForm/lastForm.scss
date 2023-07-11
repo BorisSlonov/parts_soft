@@ -13,8 +13,21 @@
     &__item {
         &_form {
             max-width: 500px;
+
+            @media(max-width:999px) {
+                max-width: 600px;
+                margin-left: auto;
+                margin-right: auto;
+            }
         }
     }
+
+    &__imgTeleport {
+        @media(max-width:999px) {
+            margin-bottom: 20px;
+        }
+    }
+
 }
 
 .lastForm {
@@ -22,6 +35,47 @@
     flex-direction: column;
     gap: 15px;
     max-width: 500px;
+
+    @media(max-width: 999px) {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 20px;
+        max-width: 600px;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+
+    @media(min-width:768px) and (max-width:999px) {
+        .lastForm__input:nth-child(1) {
+            order: 1;
+        }
+
+        .lastForm__input:nth-child(2) {
+            order: 3;
+        }
+
+        .lastForm__input:nth-child(3) {
+            order: 5;
+        }
+
+        .lastForm__textarea {
+            order: 2;
+        }
+
+        .btn {
+            order: 4;
+        }
+
+        .lastForm__p {
+            order: 6;
+        }
+    }
+
+    @media(max-width:767px) {
+        display: flex;
+        flex-direction: column;
+    }
 
 
 
@@ -34,14 +88,18 @@
         font-size: 16px;
         font-weight: 600;
         padding: 15px;
+
     }
 
     &__textarea {
         resize: none;
+
+
     }
 
     &__p {
         text-align: center;
         margin-top: 10px;
     }
+
 }

@@ -2,7 +2,7 @@ function modalContent(trigger, item) {
     const btn = document.querySelectorAll(trigger),
         pop = document.querySelector(item),
         close = document.querySelectorAll('.popup-close'),
-        closeBack = document.querySelectorAll('.popup'),
+        closeBack = document.querySelectorAll('.popupWrapper'),
         activeClass = 'show',
         hideClass = 'hide';
 
@@ -17,15 +17,14 @@ function modalContent(trigger, item) {
         pop.classList.remove(activeClass);
         pop.classList.add(hideClass);
         document.body.style.overflow = '';
+
     }
 
     function showHideContent(trigger, func) {
         trigger.forEach(item => {
             item.addEventListener('click', (e) => {
-                if (e.target && e.target.className === item.className) {
-                    e.preventDefault();
-                    func();
-                }
+                e.preventDefault();
+                func();
             });
         });
     }
