@@ -95,6 +95,12 @@
         display: flex;
         gap: 20px;
 
+        &:first-child {
+            position: sticky;
+            top: 80px;
+            z-index: 9999;
+        }
+
         @media(max-width:767px) {
             gap: 0;
 
@@ -192,6 +198,8 @@
     }
 
     &__svg {
+        flex-shrink: 0;
+        width: 20px;
         max-width: 20px;
     }
 
@@ -231,12 +239,14 @@
         display: flex;
         align-items: center;
         justify-content: space-between;
+        font-weight: 500;
 
         @media(max-width:767px) {
             flex-direction: column-reverse;
             gap: 10px;
             align-items: flex-start;
             margin-bottom: 10px;
+            font-size: 14px;
         }
 
         &_col {
@@ -326,6 +336,7 @@
         font-family: Open Sans;
         font-size: 18px;
         font-weight: 600;
+        color: #000;
 
         @media(max-width:767px) {
             font-size: 14px;
