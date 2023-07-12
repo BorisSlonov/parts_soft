@@ -3154,6 +3154,7 @@ h4 {
   flex-basis: 25%;
   padding: 25px 15px;
   background-color: #F6F6F6;
+  justify-content: center;
 }
 
 .pricesTable__podCost {
@@ -3714,8 +3715,8 @@ h4 {
     z-index: 1;
     font-size: 14px;
     background-color: #fff;
-    display: inline-flex;
-    flex-wrap: wrap;
+    flex-direction: column;
+    align-items: flex-start;
   }
 
   .pricesTable__name .pricesTableTip {
@@ -3723,6 +3724,10 @@ h4 {
     transform: translate(100%, 50%) scale(0);
     right: -200px;
     left: auto;
+  }
+
+  .pricesTable__name_inline {
+    display: inline-flex;
   }
 
   .pricesTable__podCost {
