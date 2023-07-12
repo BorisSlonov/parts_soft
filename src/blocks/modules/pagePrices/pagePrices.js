@@ -42,4 +42,3 @@ if (document.querySelector('.tariffsToggle__btn_parts')) {
         btnOwn.classList.add('active'); // Добавьте класс active к btnOwn
     });
 }
-
