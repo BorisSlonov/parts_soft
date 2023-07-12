@@ -160,6 +160,7 @@
         padding: 25px 15px;
         background-color: #F6F6F6;
         justify-content: center;
+        flex-wrap: wra;
 
         @media(max-width: 999px) {
             max-width: 130px;
@@ -179,6 +180,7 @@
 
             &_inline {
                 display: inline-flex;
+                flex-wrap: wrap;
             }
 
 
@@ -307,12 +309,20 @@
             font-size: 14px;
         }
 
+        &_colSimple {
+            @media(max-width:767px) {
+                flex-direction: column;
+            }
+    
+        }
+
         &_col {
             margin-top: 30px;
             flex-direction: column;
             gap: 15px;
             align-items: flex-start;
         }
+ 
     }
 
     &__adsRow {

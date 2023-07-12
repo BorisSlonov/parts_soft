@@ -3155,6 +3155,7 @@ h4 {
   padding: 25px 15px;
   background-color: #F6F6F6;
   justify-content: center;
+  flex-wrap: wrap;
 }
 
 .pricesTable__podCost {
@@ -3728,6 +3729,7 @@ h4 {
 
   .pricesTable__name_inline {
     display: inline-flex;
+    flex-wrap: wrap;
   }
 
   .pricesTable__podCost {
@@ -4217,6 +4219,10 @@ h4 {
     align-items: flex-start;
     margin-bottom: 10px;
     font-size: 14px;
+  }
+
+  .pricesTable__footer_colSimple {
+    flex-direction: column;
   }
 
   .tariffsToggle {
