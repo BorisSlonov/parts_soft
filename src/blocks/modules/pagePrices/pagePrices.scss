@@ -161,6 +161,7 @@
         background-color: #F6F6F6;
 
         @media(max-width: 999px) {
+            max-width: 130px;
             position: sticky;
             z-index: 1;
             font-size: 14px;
@@ -355,11 +356,11 @@
 
 @media(max-width:999px) {
     .pricesTable__name:hover .pricesTableTip {
-        left: auto;
-        left: auto;
+        left: 135px;
         right: -200px;
         transform: translateX(10px) scale(1);
         top: 0;
+        z-index: 20;
     }
     .pricesTableTip::before {
         top: 55%;
