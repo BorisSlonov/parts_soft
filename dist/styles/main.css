@@ -3147,9 +3147,9 @@ h4 {
 
 .pricesTable__name {
   position: relative;
+  left: 0;
   gap: 5px;
-  display: inline-flex;
-  flex-wrap: wrap;
+  display: flex;
   align-items: center;
   flex-basis: 25%;
   padding: 25px 15px;
@@ -3262,7 +3262,7 @@ h4 {
 }
 
 .pricesTableTip {
-  z-index: 100;
+  z-index: 10000;
   font-size: 14px;
   font-weight: 400;
   position: absolute;
@@ -3684,12 +3684,17 @@ h4 {
     grid-template-columns: repeat(2, 1fr);
   }
 
+  .pricesTabs {
+    overflow-x: hidden;
+  }
+
   .pricesTabs__titles {
     display: none;
   }
 
   .pricesTabs__body {
     margin-top: 20px;
+    overflow-x: scroll;
   }
 
   .pricesTable {
@@ -3698,14 +3703,25 @@ h4 {
     margin-right: auto;
   }
 
+  .pricesTable__row:first-child {
+    position: relative;
+    top: 0;
+  }
+
   .pricesTable__name {
+    position: sticky;
+    z-index: 1;
     font-size: 14px;
+    background-color: #fff;
+    display: inline-flex;
+    flex-wrap: wrap;
   }
 
   .pricesTable__name .pricesTableTip {
     width: 200px;
-    transform: translateX(0) scale(0);
+    transform: translate(100%, 50%) scale(0);
     right: -200px;
+    left: auto;
   }
 
   .pricesTable__podCost {
@@ -3720,6 +3736,20 @@ h4 {
 
   .pricesTable__item:last-child:hover .pricesTableTip {
     transform: translateX(0) scale(1);
+  }
+
+  .pricesTable__name:hover .pricesTableTip {
+    left: auto;
+    left: auto;
+    right: -200px;
+    transform: translateX(10px) scale(1);
+    top: 0;
+  }
+
+  .pricesTableTip::before {
+    top: 55%;
+    left: -5px;
+    transform: translateY(-50%) rotate(45deg);
   }
 }
 
@@ -4139,19 +4169,23 @@ h4 {
     font-size: 14px;
   }
 
-  .pricesTable__row:first-child {
-    top: 60px;
-  }
-
   .pricesTable__row {
     gap: 0;
   }
 
-  .pricesTable__row:nth-child(2n+1) {
+  .pricesTable__row:nth-child(odd) {
+    background-color: #F5F5F5;
+  }
+
+  .pricesTable__row:nth-child(odd) .pricesTable__name {
     background-color: #F5F5F5;
   }
 
   .pricesTable__row:first-child {
+    background-color: #fff;
+  }
+
+  .pricesTable__row:first-child .pricesTable__name {
     background-color: #fff;
   }
 
@@ -4160,7 +4194,6 @@ h4 {
   }
 
   .pricesTable__name {
-    background-color: transparent;
     max-width: 100%;
   }
 

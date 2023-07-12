@@ -1,6 +1,7 @@
 .pricesTabs {
 
     @media(max-width:999px) {
+        overflow-x: hidden;
     }
 
     &__titles {
@@ -53,8 +54,10 @@
 
     &__body {
         margin-top: 40px;
+
         @media(max-width:999px) {
             margin-top: 20px;
+            overflow-x: scroll;
         }
     }
 }
@@ -105,20 +108,31 @@
             right: 0;
             z-index: 9999;
 
-            @media(max-width:767px) {
-                top: 60px;
+            @media(max-width:999px) {
+                position: relative;
+                top: 0;
             }
+
+
         }
 
         @media(max-width:767px) {
             gap: 0;
 
-            &:nth-child(2n + 1) {
+            &:nth-child(odd) {
                 background-color: #F5F5F5;
+
+                .pricesTable__name {
+                    background-color: #F5F5F5;
+                }
             }
 
             &:first-child {
                 background-color: #fff;
+
+                .pricesTable__name {
+                    background-color: #fff;
+                }
             }
         }
 
@@ -138,26 +152,34 @@
 
     &__name {
         position: relative;
+        left: 0;
         gap: 5px;
-        display: inline-flex;
-        flex-wrap: wrap;
+        display: flex;
         align-items: center;
         flex-basis: 25%;
         padding: 25px 15px;
         background-color: #F6F6F6;
 
         @media(max-width: 999px) {
+            position: sticky;
+            z-index: 1;
             font-size: 14px;
+            background-color: #fff;
+            display: inline-flex;
+            flex-wrap: wrap;
 
             .pricesTableTip {
                 width: 200px;
-                transform: translateX(0) scale(0);
+                transform: translate(100%, 50%) scale(0);
                 right: -200px;
+                left: auto;
             }
+
+
+
         }
 
         @media(max-width:767px) {
-            background-color: transparent;
             max-width: 100%;
         }
 
@@ -206,10 +228,11 @@
                     transform: translateX(0) scale(0);
                     left: -80px;
                 }
+
                 &:hover {
                     .pricesTableTip {
                         transform: translateX(0) scale(1);
-                    } 
+                    }
                 }
             }
         }
@@ -311,7 +334,7 @@
 
 //tip
 .pricesTableTip {
-    z-index: 100;
+    z-index: 10000;
     font-size: 14px;
     font-weight: 400;
     position: absolute;
@@ -328,6 +351,21 @@
 .pricesTable__name:hover .pricesTableTip,
 .pricesTable__item:hover .pricesTableTip {
     transform: translateX(-50%) scale(1);
+}
+
+@media(max-width:999px) {
+    .pricesTable__name:hover .pricesTableTip {
+        left: auto;
+        left: auto;
+        right: -200px;
+        transform: translateX(10px) scale(1);
+        top: 0;
+    }
+    .pricesTableTip::before {
+        top: 55%;
+        left: -5px;
+        transform: translateY(-50%) rotate(45deg);
+    }
 }
 
 .pricesTableTip::before {
