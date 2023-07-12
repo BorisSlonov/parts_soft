@@ -3132,6 +3132,8 @@ h4 {
 .pricesTable__row:first-child {
   position: sticky;
   top: 80px;
+  left: 0;
+  right: 0;
   z-index: 9999;
 }
 
@@ -3680,10 +3682,6 @@ h4 {
 
   .suppliersGrid__body {
     grid-template-columns: repeat(2, 1fr);
-  }
-
-  .pricesTabs {
-    overflow-x: auto;
   }
 
   .pricesTabs__titles {

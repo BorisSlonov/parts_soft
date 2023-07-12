@@ -1,7 +1,4 @@
 .pricesTabs {
-    @media(max-width: 999px) {
-        overflow-x: auto;
-    }
 
     &__titles {
         position: relative;
@@ -98,7 +95,11 @@
         &:first-child {
             position: sticky;
             top: 80px;
+            left: 0;
+            right: 0;
             z-index: 9999;
+            @media(max-width:767px) 
+            top: 70px;
         }
 
         @media(max-width:767px) {
