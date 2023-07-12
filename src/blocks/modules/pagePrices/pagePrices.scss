@@ -1,5 +1,8 @@
 .pricesTabs {
 
+    @media(max-width:999px) {
+    }
+
     &__titles {
         position: relative;
         display: flex;
@@ -50,6 +53,9 @@
 
     &__body {
         margin-top: 40px;
+        @media(max-width:999px) {
+            margin-top: 20px;
+        }
     }
 }
 
@@ -98,8 +104,10 @@
             left: 0;
             right: 0;
             z-index: 9999;
-            @media(max-width:767px) 
-            top: 70px;
+
+            @media(max-width:767px) {
+                top: 60px;
+            }
         }
 
         @media(max-width:767px) {
@@ -131,7 +139,8 @@
     &__name {
         position: relative;
         gap: 5px;
-        display: flex;
+        display: inline-flex;
+        flex-wrap: wrap;
         align-items: center;
         flex-basis: 25%;
         padding: 25px 15px;
@@ -139,6 +148,12 @@
 
         @media(max-width: 999px) {
             font-size: 14px;
+
+            .pricesTableTip {
+                width: 200px;
+                transform: translateX(0) scale(0);
+                right: -200px;
+            }
         }
 
         @media(max-width:767px) {
@@ -146,10 +161,6 @@
             max-width: 100%;
         }
 
-        &_inline {
-            display: inline-flex;
-            flex-wrap: wrap;
-        }
     }
 
     &__podCost {
@@ -159,6 +170,10 @@
         align-items: center;
         background-color: #F6F6F6;
         padding: 25px;
+
+        @media(max-width:999px) {
+            background-color: #fff;
+        }
     }
 
     &__content {
@@ -184,6 +199,20 @@
         background-color: #F6F6F6;
         gap: 5px;
 
+        @media(max-width:999px) {
+            &:last-child {
+                .pricesTableTip {
+                    width: 200px;
+                    transform: translateX(0) scale(0);
+                    left: -80px;
+                }
+                &:hover {
+                    .pricesTableTip {
+                        transform: translateX(0) scale(1);
+                    } 
+                }
+            }
+        }
 
 
         @media(max-width:767px) {
@@ -347,5 +376,11 @@
             color: #fff;
             background-color: var(--green);
         }
+    }
+}
+
+.btn_pricesTableOpenHidden {
+    .btn__span {
+        padding: 8px 16px;
     }
 }

@@ -49,6 +49,29 @@
 
     }
 
+    &__navMenu {
+        @media(max-width:767px) {
+            position: relative;
+            &::before {
+                content: '';
+                position: absolute;
+                left: 0;
+                width: 2px;
+                height: 100%;
+                background-color: #FCEFEB
+            }
+            &::after {
+                content: '';
+                position: absolute;
+                left: 0;
+                right: 0;
+                height: 2px;
+                bottom: 0;
+                background-color: #FCEFEB
+            }
+        }
+    }
+
     &__menuSelect {
         margin-bottom: 40px;
     }

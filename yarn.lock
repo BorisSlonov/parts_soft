@@ -7883,6 +7883,8 @@ bem-tools-create@bem-tools/bem-tools-create:
     postcss-scss: ^4.0.3
     require-dir: ^1.2.0
     sass: ^1.49.9
+    stickyfill: ^1.1.1-strict
+    stickyfilljs: ^2.1.0
     stylelint: ^14.5.3
     stylelint-config-standard-scss: ^3.0.0
     stylelint-order: ^5.0.0
@@ -13970,6 +13972,20 @@ bem-tools-create@bem-tools/bem-tools-create:
   version: 1.4.0
   resolution: "statuses@npm:1.4.0"
   checksum: a9e7fbd3bc4859643e183101ed074c877fb70fb2d32379320713e78106360ef0d41d31598e1345390cf4a003d108edecb9607eb466bfbc31ec808c13a527434f
+  languageName: node
+  linkType: hard
+
+"stickyfill@npm:^1.1.1-strict":
+  version: 1.1.1
+  resolution: "stickyfill@npm:1.1.1"
+  checksum: 1efba69fe61c65ef66e780fb0b8642533b399f0be3b0eb6317adcbcce2ef1ba81869a9840dbc8d2230ddcc8575b4867c32f90c31fa297d115202d9f415ab92a2
+  languageName: node
+  linkType: hard
+
+"stickyfilljs@npm:^2.1.0":
+  version: 2.1.0
+  resolution: "stickyfilljs@npm:2.1.0"
+  checksum: f6f7fbb62c26e7af3bc18ce90532dbc5b39a8d523ccf9d2f4ede6f20d8e56c236136594b44b66a58f4b4f06ea7d11362ea2bcd06bab8ef552863e4349f1e936b
   languageName: node
   linkType: hard
 

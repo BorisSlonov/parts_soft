@@ -1,6 +1,6 @@
 .header {
     position: fixed;
-    z-index: 50;
+    z-index: 10001;
     text-align: center;
     left: 0;
     right: 0;
@@ -277,7 +277,7 @@
     .header__burger {
         display: block;
         position: relative;
-        z-index: 1100;
+        z-index: 10001;
     }
 
     .burger_active+.header__menu {

@@ -1626,7 +1626,7 @@ h4 {
 
 .header {
   position: fixed;
-  z-index: 50;
+  z-index: 10001;
   text-align: center;
   left: 0;
   right: 0;
@@ -3148,16 +3148,12 @@ h4 {
 .pricesTable__name {
   position: relative;
   gap: 5px;
-  display: flex;
+  display: inline-flex;
+  flex-wrap: wrap;
   align-items: center;
   flex-basis: 25%;
   padding: 25px 15px;
   background-color: #F6F6F6;
-}
-
-.pricesTable__name_inline {
-  display: inline-flex;
-  flex-wrap: wrap;
 }
 
 .pricesTable__podCost {
@@ -3324,6 +3320,10 @@ h4 {
 .tariffsToggle__btn.active {
   color: #fff;
   background-color: var(--green);
+}
+
+.btn_pricesTableOpenHidden .btn__span {
+  padding: 8px 16px;
 }
 
 @media (min-width: 767px) {
@@ -3522,7 +3522,7 @@ h4 {
   .header__burger {
     display: block;
     position: relative;
-    z-index: 1100;
+    z-index: 10001;
   }
 
   .burger_active + .header__menu {
@@ -3688,6 +3688,10 @@ h4 {
     display: none;
   }
 
+  .pricesTabs__body {
+    margin-top: 20px;
+  }
+
   .pricesTable {
     width: 940px;
     margin-left: auto;
@@ -3696,6 +3700,26 @@ h4 {
 
   .pricesTable__name {
     font-size: 14px;
+  }
+
+  .pricesTable__name .pricesTableTip {
+    width: 200px;
+    transform: translateX(0) scale(0);
+    right: -200px;
+  }
+
+  .pricesTable__podCost {
+    background-color: #fff;
+  }
+
+  .pricesTable__item:last-child .pricesTableTip {
+    width: 200px;
+    transform: translateX(0) scale(0);
+    left: -80px;
+  }
+
+  .pricesTable__item:last-child:hover .pricesTableTip {
+    transform: translateX(0) scale(1);
   }
 }
 
@@ -4007,6 +4031,29 @@ h4 {
     max-width: 100%;
   }
 
+  .singleArticle__navMenu {
+    position: relative;
+  }
+
+  .singleArticle__navMenu::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    width: 2px;
+    height: 100%;
+    background-color: #FCEFEB;
+  }
+
+  .singleArticle__navMenu::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    right: 0;
+    height: 2px;
+    bottom: 0;
+    background-color: #FCEFEB;
+  }
+
   .singleArticle__h3 {
     font-size: 18px;
   }
@@ -4090,6 +4137,10 @@ h4 {
 
   .pricesTable {
     font-size: 14px;
+  }
+
+  .pricesTable__row:first-child {
+    top: 60px;
   }
 
   .pricesTable__row {
