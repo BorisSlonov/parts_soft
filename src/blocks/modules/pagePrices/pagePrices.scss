@@ -161,13 +161,19 @@
 
     &__row {
         display: flex;
+        transition: all .3s;
 
         &_header {
             position: sticky;
-            top: 85px;
             left: 0;
+            top: 0;
             right: 0;
             z-index: 9999;
+
+            &_active {
+                top: 85px;
+
+            }
 
             @media(max-width:999px) {
                 position: relative;

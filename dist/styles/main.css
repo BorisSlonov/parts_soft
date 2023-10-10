@@ -3184,14 +3184,19 @@ h4 {
 
 .pricesTable__row {
   display: flex;
+  transition: all 0.3s;
 }
 
 .pricesTable__row_header {
   position: sticky;
-  top: 85px;
   left: 0;
+  top: 0;
   right: 0;
   z-index: 9999;
+}
+
+.pricesTable__row_header_active {
+  top: 85px;
 }
 
 .pricesTable__row.hide {
