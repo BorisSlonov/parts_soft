@@ -1,3 +1,7 @@
+
+import Swiper, { Pagination, Breakpoints, Autoplay } from 'swiper';
+Swiper.use([Pagination, Breakpoints, Autoplay]);
+
 const tabs = (headerSelector, tabSelector, contentSelector, activeClass) => {
     const header = document.querySelector(headerSelector),
         tab = document.querySelectorAll(tabSelector),
@@ -21,6 +25,50 @@ const tabs = (headerSelector, tabSelector, contentSelector, activeClass) => {
     hideTabContent();
     showTabContent();
 
+    const rentTab = document.querySelector('.pricesTabs__title_rent');
+    const titleService = document.querySelector('.pricesTabs__titleService');
+
+    const titleServiceBtn = document.querySelector('.pricesTabs__title_service');
+    const pricesTabstitleWrapper = document.querySelector('.pricesTabs__titleWrapper');
+
+    // Функция для проверки и добавления класса
+    function checkAndAddClass() {
+        if (rentTab.classList.contains('pricesTabs__title_active')) {
+            titleService.classList.add('pricesTabs__titleService_hidden');
+        } else {
+            titleService.classList.remove('pricesTabs__titleService_hidden');
+        }
+
+        if (titleServiceBtn.classList.contains('pricesTabs__title_active')) {
+            pricesTabstitleWrapper.classList.add('pricesTabs__titleService_hidden');
+            titleService.classList.add('pricesTabs__titleService_hidden');
+        } else {
+            pricesTabstitleWrapper.classList.remove('pricesTabs__titleService_hidden');
+        }
+
+        // Объявите флаг для отслеживания инициализации свайпера
+        let isSwiperInitialized = false;
+
+        // Проверьте, инициализирован ли свайпер
+        if (!isSwiperInitialized) {
+            const swiperTariffs2 = new Swiper('.swiperTariffs_2', {
+                slidesPerView: 1,
+                spaceBetween: 20,
+                autoHeight: true,
+                observer: true,
+                observerUpdate: true,
+                breakpoints: {
+                    640: {
+                        slidesPerView: 2,
+                    },
+                }
+            });
+            isSwiperInitialized = true;
+        }
+
+
+    }
+
     header.addEventListener("click", (e) => {
         const target = e.target;
         if (
@@ -35,7 +83,48 @@ const tabs = (headerSelector, tabSelector, contentSelector, activeClass) => {
                 }
             });
         }
+
+        checkAndAddClass();
+
     });
+
+    const pricesTabsBackBtn = document.querySelector('.pricesTabs__backBtn');
+
+    pricesTabsBackBtn.addEventListener('click', (e) => {
+        hideTabContent();
+        showTabContent(0);
+        document.querySelector('.pricesTabs__titleWrapper').classList.remove('pricesTabs__titleService_hidden');
+    });
+
+
+
+    if (window.location.href.endsWith("#sobstvennost")) {
+        // Вызовите функцию showTabContent(1)
+        hideTabContent();
+        showTabContent(1);
+        checkAndAddClass();
+        console.log('go')
+        console.log(window.location.href)
+    }
+
+    if (window.location.href.endsWith("#tariffs")) {
+        // Вызовите функцию showTabContent(1)
+        hideTabContent();
+        showTabContent(2);
+        checkAndAddClass();
+        console.log('go')
+        console.log(window.location.href)
+    }
+
+
+
+
+
+
+
+
+
+
 
     // Получаем все кастомные селекты
     const selects = document.querySelectorAll(".custom-select_qa, .custom-select_help, .custom-select_prices");
@@ -77,6 +166,7 @@ const tabs = (headerSelector, tabSelector, contentSelector, activeClass) => {
     });
 
 };
+
 
 
 const qaTabs = document.querySelector(".qaTabs");
