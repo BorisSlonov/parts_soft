@@ -18,7 +18,11 @@ const swiperTariffs = new Swiper('.swiperTariffs_1', {
         999: {
             slidesPerView: 4,
         }
-    }
+    },
+    // If we need pagination
+    pagination: {
+        el: '.swiper-pagination',
+    },
 });
 
 

@@ -114,8 +114,12 @@
 }
 
 .acc-active {
+    position: sticky;
+    left: 0;
+    right: 0;
     color: var(--green);
     transition: all .25s;
+    border: 1px solid var(--grey)
 }
 
 

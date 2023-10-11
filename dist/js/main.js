@@ -347,6 +347,10 @@ var swiperTariffs = new swiper__WEBPACK_IMPORTED_MODULE_0__["default"]('.swiperT
     999: {
       slidesPerView: 4
     }
+  },
+  // If we need pagination
+  pagination: {
+    el: '.swiper-pagination'
   }
 });
 if (document.querySelector('.tariffsToggle__btn_parts')) {
@@ -674,6 +678,10 @@ var tabs = function tabs(headerSelector, tabSelector, contentSelector, activeCla
           640: {
             slidesPerView: 2
           }
+        },
+        // If we need pagination
+        pagination: {
+          el: '.swiper-pagination'
         }
       });
       isSwiperInitialized = true;
