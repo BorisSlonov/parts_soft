@@ -537,6 +537,7 @@
 
         @media(max-width:767px) {
             font-size: 14px;
+            width: 100%;
         }
 
         &.active {
@@ -568,8 +569,18 @@
     font-size: 18px;
     font-weight: 600;
 
+    @media(max-width:767px) {
+        margin-bottom: 10px;
+        margin-top: -20px;
+        font-size: 13px;
+    }
+
     svg {
         width: 30px;
+
+        @media(max-width:767px) {
+            width: 20px;
+        }
     }
 }
 
@@ -588,9 +599,10 @@
         background-color: #f5f5f5;
     }
 
-    .pricesTable__item:first-child {
-        border-top-left-radius: 8px;
-        border-bottom-left-radius: 8px;
+    .pricesTable__item:first-child,
+    .pricesTable__item:last-child  {
+        border-top-right-radius: 12px;
+        border-bottom-right-radius: 12px;
     }
 }
 
@@ -996,5 +1008,17 @@
 @media(max-width:999px) {
     .tariffs__h2_mb0 {
         display: none;
+    }
+}
+
+#prices1 {
+    .pricesTable__row_mob {
+        .pricesTable__content {
+            .pricesTable__item {
+                &:nth-child(2) {
+                    background-color: var(--black);
+                }
+            }
+        }
     }
 }

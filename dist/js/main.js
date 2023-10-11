@@ -156,16 +156,20 @@ window.addEventListener("DOMContentLoaded", function () {
   //Hidden header
   var headerTag = document.querySelector(".header");
   var scrollPrev = 0;
-  var pricesHeader = document.querySelector('.pricesTable__row_header');
+  var pricesHeader = document.querySelectorAll('.pricesTable__row_header');
   window.addEventListener("scroll", function () {
     var scrolled = window.scrollY;
     if (scrolled > 100 && scrolled > scrollPrev) {
       headerTag.classList.add("out");
-      pricesHeader.classList.remove('pricesTable__row_header_active');
+      pricesHeader.forEach(function (i) {
+        i.classList.remove('pricesTable__row_header_active');
+      });
       closeMenu(); // Закрыть меню при скролле
     } else {
       headerTag.classList.remove("out");
-      pricesHeader.classList.add('pricesTable__row_header_active');
+      pricesHeader.forEach(function (i) {
+        i.classList.add('pricesTable__row_header_active');
+      });
     }
     scrollPrev = scrolled;
   });
