@@ -3436,6 +3436,7 @@ h4 {
   font-weight: 400;
   border-radius: 6px;
   border: none;
+  background-color: transparent;
 }
 
 .tariffsToggle__btn.active {
@@ -3479,6 +3480,15 @@ h4 {
   background: #FDFDFD;
 }
 
+.pricesTable__row_header .pricesTable__item {
+  background-color: #f5f5f5;
+}
+
+.pricesTable__row_header .pricesTable__item:first-child {
+  border-top-left-radius: 8px;
+  border-bottom-left-radius: 8px;
+}
+
 .accordion_table .pricesTable__row a {
   color: #4B8125;
   text-decoration: none;
@@ -3492,6 +3502,10 @@ h4 {
   font-weight: 600;
   line-height: normal;
   padding: 20px 12px;
+}
+
+.accordion_table .pricesTable__name_look {
+  white-space: nowrap;
 }
 
 .accordion_table .accordion__item {
@@ -3658,8 +3672,10 @@ h4 {
 }
 
 .pricesTable__item_black {
-  background-color: var(--black);
+  background-color: var(--black) !important;
   color: #eee;
+  border-top-left-radius: 8px;
+  border-top-right-radius: 8px;
 }
 
 .pricesTable__item_dev {
@@ -3679,6 +3695,14 @@ h4 {
 .pricesTable__svg {
   width: 15px;
   height: 15px;
+}
+
+.swiperWrapper {
+  position: relative;
+}
+
+.swiperWrapper::before {
+  content: "";
 }
 
 .avito {
@@ -4326,7 +4350,7 @@ h4 {
   }
 
   .swiperTariffs {
-    margin-bottom: 25px;
+    margin-bottom: 40px;
   }
 
   .swiperTariffs_2 {
@@ -4343,6 +4367,23 @@ h4 {
 
   .tariffs__bottom {
     margin-top: 25px;
+  }
+
+  .swiperWrapper {
+    margin-top: 20px;
+  }
+
+  .swiperWrapper::before {
+    position: absolute;
+    left: -20px;
+    right: -20px;
+    top: -20px;
+    bottom: -15px;
+    background-color: #ECECEC;
+  }
+
+  .tariffs__h2_mb0 {
+    display: none;
   }
 
   .avito .avitoPage1__item:last-child {
@@ -4397,6 +4438,10 @@ h4 {
 
   .section {
     padding: 30px 0;
+  }
+
+  .section_pricesTabs {
+    padding-top: 0;
   }
 
   .breadCrumbs {

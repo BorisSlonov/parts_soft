@@ -534,6 +534,7 @@
         font-weight: 400;
         border-radius: 6px;
         border: none;
+        background-color: transparent;
 
         @media(max-width:767px) {
             font-size: 14px;
@@ -583,6 +584,15 @@
     border-radius: 12px;
     border: 1px solid #C6C6C6;
     background: #FDFDFD;
+
+    .pricesTable__item {
+        background-color: #f5f5f5;
+    }
+
+    .pricesTable__item:first-child {
+        border-top-left-radius: 8px;
+        border-bottom-left-radius: 8px;
+    }
 }
 
 
@@ -609,6 +619,10 @@
         @media(max-width:767px) {
             background-color: #ECECEC !important;
         }
+    }
+
+    .pricesTable__name_look {
+        white-space: nowrap;
     }
 
     .accordion__item {
@@ -765,7 +779,7 @@
     margin-bottom: 50px;
 
     @media(max-width:999px) {
-        margin-bottom: 25px;
+        margin-bottom: 40px;
     }
 }
 
@@ -806,6 +820,7 @@
         align-items: flex-start;
         justify-content: space-between;
         height: 100%;
+
         &_best {
             background-color: var(--black);
             color: #eee;
@@ -919,8 +934,10 @@
 }
 
 .pricesTable__item_black {
-    background-color: var(--black);
+    background-color: var(--black) !important;
     color: #eee;
+    border-top-left-radius: 8px;
+    border-top-right-radius: 8px;
 }
 
 
@@ -952,4 +969,33 @@
 .pricesTable__svg {
     width: 15px;
     height: 15px;
+}
+
+
+
+.swiperWrapper {
+    position: relative;
+
+    @media(max-width:999px) {
+        margin-top: 20px;
+    }
+
+    &::before {
+        content: '';
+
+        @media(max-width:999px) {
+            position: absolute;
+            left: -20px;
+            right: -20px;
+            top: -20px;
+            bottom: -15px;
+            background-color: #ECECEC;
+        }
+    }
+}
+
+@media(max-width:999px) {
+    .tariffs__h2_mb0 {
+        display: none;
+    }
 }
