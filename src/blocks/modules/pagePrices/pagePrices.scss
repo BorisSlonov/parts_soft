@@ -150,6 +150,9 @@
         @media(max-width: 767px) {
             margin-left: auto;
             margin-right: auto;
+            .accordion__txt {
+                width: 100%;
+            }
         }
     }
 
@@ -1022,6 +1025,14 @@
                     background-color: var(--black);
                 }
             }
+        }
+    }
+}
+
+@media(max-width:767px) {
+    .pricesTable_sobstvennost {
+        .accordion__txt {
+            width: 420px;
         }
     }
 }
