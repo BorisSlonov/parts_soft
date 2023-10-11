@@ -3196,6 +3196,7 @@ h4 {
 }
 
 .pricesTable_sobstvennost {
+  width: 100%;
   margin-left: auto;
   margin-right: auto;
 }
