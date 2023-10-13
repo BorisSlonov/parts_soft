@@ -590,6 +590,9 @@
 .perMonth {
     color: #898989;
     font-size: 14px;
+    @media(max-width:767px) {
+        font-size: 13px;
+    }
 }
 
 
