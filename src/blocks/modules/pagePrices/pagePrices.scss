@@ -43,7 +43,6 @@
     &__title {
         padding: 12px 32px;
         transition: all .25s;
-        cursor: pointer;
         color: #575757;
         text-align: center;
         font-family: Open Sans;
@@ -483,9 +482,7 @@
 .tariffs__li {
     position: relative;
 }
-.tariffs__li:hover .pricesTableTip,
-.pricesTable__name:hover .pricesTableTip,
-.pricesTable__item:hover .pricesTableTip {
+.pricesTable__svg:hover + .pricesTableTip {
     transform: translateX(-50%) scale(1);
 }
 
@@ -503,6 +500,10 @@
         left: -5px;
         transform: translateY(-50%) rotate(45deg);
     }
+}
+
+.pricesTabs__title {
+    cursor: pointer;
 }
 
 .pricesTableTip::before {

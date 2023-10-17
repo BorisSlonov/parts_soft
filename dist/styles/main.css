@@ -1438,7 +1438,6 @@ h4 {
 
 .accordion__h4 {
   position: relative;
-  cursor: pointer;
   transition: all 0.25s;
   font-size: 18px;
   transition: all 0.25s;
@@ -3120,7 +3119,6 @@ h4 {
 .pricesTabs__title {
   padding: 12px 32px;
   transition: all 0.25s;
-  cursor: pointer;
   color: #575757;
   text-align: center;
   font-family: Open Sans;
@@ -3405,10 +3403,12 @@ h4 {
   position: relative;
 }
 
-.tariffs__li:hover .pricesTableTip,
-.pricesTable__name:hover .pricesTableTip,
-.pricesTable__item:hover .pricesTableTip {
+.pricesTable__svg:hover + .pricesTableTip {
   transform: translateX(-50%) scale(1);
+}
+
+.pricesTabs__title {
+  cursor: pointer;
 }
 
 .pricesTableTip::before {
