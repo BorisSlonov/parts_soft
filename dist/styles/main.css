@@ -3401,6 +3401,11 @@ h4 {
   transition: all 0.25s;
 }
 
+.tariffs__li {
+  position: relative;
+}
+
+.tariffs__li:hover .pricesTableTip,
 .pricesTable__name:hover .pricesTableTip,
 .pricesTable__item:hover .pricesTableTip {
   transform: translateX(-50%) scale(1);
@@ -3576,6 +3581,10 @@ h4 {
   color: #eee;
 }
 
+.tariffs__item_best .pricesTableTip {
+  color: var(--black);
+}
+
 .tariffs__top {
   display: flex;
   flex-direction: column;
@@ -3640,6 +3649,7 @@ h4 {
 
 .tariffs__li {
   display: flex;
+  justify-content: space-between;
   align-items: center;
   gap: 8px;
   font-family: "Gilroy", sans-serif;

@@ -480,6 +480,10 @@
     transition: all .25s;
 }
 
+.tariffs__li {
+    position: relative;
+}
+.tariffs__li:hover .pricesTableTip,
 .pricesTable__name:hover .pricesTableTip,
 .pricesTable__item:hover .pricesTableTip {
     transform: translateX(-50%) scale(1);
@@ -841,6 +845,9 @@
         &_best {
             background-color: var(--black);
             color: #eee;
+            .pricesTableTip {
+                color: var(--black);
+            }
         }
 
     }
@@ -911,6 +918,7 @@
 
     &__li {
         display: flex;
+        justify-content: space-between;
         align-items: center;
         gap: 8px;
         font-family: 'Gilroy', sans-serif;
