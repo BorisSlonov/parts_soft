@@ -10,26 +10,9 @@
 document.addEventListener("DOMContentLoaded", function () {
   var checkAccordion = document.querySelector(".accordion");
   if (checkAccordion) {
-    var btns = document.querySelectorAll(".accordion__h4");
-    btns.forEach(function (btn) {
-      console.log('click');
-      btn.addEventListener("click", function () {
-        if (!this.classList.contains("acc-active")) {
-          btns.forEach(function (btn) {
-            btn.classList.remove("acc-active");
-          });
-          this.classList.add("acc-active");
-        } else {
-          this.classList.remove("acc-active");
-        }
-      });
-    });
-  }
-  var tableAccordion = document.querySelector('.accordion_table');
-  if (tableAccordion && innerWidth <= 999) {
     var _btns = document.querySelectorAll(".accordion__h4");
     _btns.forEach(function (btn) {
-      console.log('click');
+      console.log("click");
       btn.addEventListener("click", function () {
         if (!this.classList.contains("acc-active")) {
           _btns.forEach(function (btn) {
@@ -42,6 +25,37 @@ document.addEventListener("DOMContentLoaded", function () {
       });
     });
   }
+  var tableAccordion = document.querySelector(".accordion_table");
+  var btns = document.querySelectorAll(".accordion__h4");
+  function toggleAccordion() {
+    if (innerWidth <= 999) {
+      btns.forEach(function (btn) {
+        console.log("click");
+        btn.addEventListener("click", function () {
+          if (!this.classList.contains("acc-active")) {
+            btns.forEach(function (btn) {
+              btn.classList.remove("acc-active");
+            });
+            this.classList.add("acc-active");
+          } else {
+            this.classList.remove("acc-active");
+          }
+        });
+      });
+    } else {
+      // Если экран становится шире 999 пикселей, убираем обработчики
+      btns.forEach(function (btn) {
+        btn.removeEventListener("click", toggleAccordion);
+        btn.classList.remove("acc-active");
+      });
+    }
+  }
+
+  // Исполнить при загрузке страницы
+  toggleAccordion();
+
+  // Добавить обработчик события изменения размера экрана
+  window.addEventListener("resize", toggleAccordion);
 });
 
 /***/ }),
