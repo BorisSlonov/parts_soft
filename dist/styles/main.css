@@ -3092,7 +3092,7 @@ h4 {
 }
 
 .pagePrices__subtitle {
-  color: #7D7D7D;
+  color: #7d7d7d;
   font-family: Open Sans;
   font-size: 18px;
   line-height: 28px;
@@ -3112,7 +3112,7 @@ h4 {
   gap: 8px;
   padding: 6px;
   border-radius: 8px;
-  border: 1px solid #9A9A9A;
+  border: 1px solid #9a9a9a;
   margin-bottom: 30px;
 }
 
@@ -3184,7 +3184,7 @@ h4 {
   display: flex;
   align-items: center;
   gap: 12px;
-  color: #6A6A6A;
+  color: #6a6a6a;
   font-size: 18px;
   line-height: 28px;
 }
@@ -3245,7 +3245,7 @@ h4 {
   text-align: center;
   justify-content: center;
   align-items: center;
-  background-color: #F6F6F6;
+  background-color: #f6f6f6;
   padding: 25px;
 }
 
@@ -3298,7 +3298,7 @@ h4 {
   background-color: var(--green);
   padding: 8px 18px;
   transition: all 0.25s;
-  color: #FFF;
+  color: #fff;
   font-family: Open Sans;
   font-size: 15px;
   font-weight: 600;
@@ -3328,7 +3328,6 @@ h4 {
   display: flex;
   align-items: center;
   gap: 12px;
-  max-width: 660px;
 }
 
 .pricesTable__footer svg {
@@ -3384,12 +3383,16 @@ h4 {
   margin-bottom: 30px;
 }
 
+.tipCont {
+  position: relative;
+}
+
 .pricesTableTip {
-  z-index: 10000;
+  z-index: 1000000000000;
   font-size: 14px;
   font-weight: 400;
   position: absolute;
-  top: 60%;
+  top: 65%;
   left: 50%;
   transform: translateX(-50%) scale(0);
   width: 300px;
@@ -3397,6 +3400,7 @@ h4 {
   background-color: #ffffff;
   box-shadow: 0px 1px 35px -3px rgba(0, 0, 0, 0.15);
   transition: all 0.25s;
+  border-radius: 8px;
 }
 
 .tariffs__li {
@@ -3405,6 +3409,20 @@ h4 {
 
 .pricesTable__svg:hover + .pricesTableTip {
   transform: translateX(-50%) scale(1);
+}
+
+.tariffs__item .pricesTable__svg:hover + .pricesTableTip {
+  transform: translateX(-90%) scale(1);
+}
+
+.tariffs__item .pricesTableTip {
+  width: 240px;
+  top: 70%;
+}
+
+.tariffs__item .pricesTableTip::before {
+  left: auto;
+  right: 16px;
 }
 
 .pricesTabs__title {
@@ -3427,7 +3445,7 @@ h4 {
   gap: 8px;
   padding: 6px;
   border-radius: 8px;
-  border: 1px solid #9A9A9A;
+  border: 1px solid #9a9a9a;
   margin-bottom: 30px;
   margin-top: 30px;
 }
@@ -3483,8 +3501,8 @@ h4 {
 
 .pricesTable__row_header {
   border-radius: 12px;
-  border: 1px solid #C6C6C6;
-  background: #FDFDFD;
+  border: 1px solid #c6c6c6;
+  background: #fdfdfd;
 }
 
 .pricesTable__row_header .pricesTable__item {
@@ -3498,7 +3516,7 @@ h4 {
 }
 
 .accordion_table .pricesTable__row a {
-  color: #4B8125;
+  color: #4b8125;
   text-decoration: none;
 }
 
@@ -3517,7 +3535,7 @@ h4 {
 }
 
 .accordion_table .accordion__item {
-  border-bottom: 1px solid #D3D3D3;
+  border-bottom: 1px solid #d3d3d3;
   border-top: none;
   overflow: visible;
 }
@@ -3567,8 +3585,8 @@ h4 {
 .tariffs__item {
   padding: 24px 15px;
   border-radius: 12px;
-  border: 1px solid #A1A1A1;
-  background: #FFF;
+  border: 1px solid #a1a1a1;
+  background: #fff;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
@@ -3605,7 +3623,7 @@ h4 {
 }
 
 .tariffs__name {
-  color: #FFF;
+  color: #fff;
   font-size: 18px;
   font-weight: 600;
   line-height: 24px;
@@ -4270,10 +4288,21 @@ h4 {
   }
 
   .pricesTable__name .pricesTableTip {
+    opacity: 0;
+  }
+
+  .pricesTable__name .pricesTable__svg:hover + .pricesTableTip {
     width: 200px;
-    transform: translate(100%, 50%) scale(0);
-    right: -200px;
-    left: auto;
+    transform: translate(0, -50%) scale(1);
+    right: auto;
+    left: 122px;
+    top: 0;
+    opacity: 1;
+  }
+
+  .pricesTable__name .pricesTableTip::before {
+    top: 50%;
+    left: 0;
   }
 
   .pricesTable__name_inline {
@@ -4301,16 +4330,14 @@ h4 {
 
   .pricesTable__name:hover .pricesTableTip {
     left: 135px;
-    right: -200px;
-    transform: translateX(10px) scale(1);
     top: 0;
     z-index: 20;
   }
 
   .pricesTableTip::before {
-    top: 55%;
-    left: -5px;
-    transform: translateY(-50%) rotate(45deg);
+    top: 0;
+    left: 50%;
+    transform: translate(-50%, -50%) rotate(45deg);
   }
 
   .accordion_table .accordion__item {
@@ -4367,7 +4394,7 @@ h4 {
   }
 
   .pricesTable__row_mob .perMonth {
-    color: #BBB;
+    color: #bbb;
   }
 
   .swiperTariffs {
@@ -4400,7 +4427,7 @@ h4 {
     right: -20px;
     top: -20px;
     bottom: -15px;
-    background-color: #ECECEC;
+    background-color: #ececec;
   }
 
   .tariffs__h2_mb0 {
@@ -4821,7 +4848,7 @@ h4 {
   }
 
   .pagePrices__subtitle {
-    color: #5C5C5C;
+    color: #5c5c5c;
     font-size: 14px;
     line-height: 20px;
   }
@@ -4865,7 +4892,7 @@ h4 {
   }
 
   .pricesTable__row:not(:first-child) {
-    border-bottom: 1px solid #C1C1C1;
+    border-bottom: 1px solid #c1c1c1;
   }
 
   .pricesTable__row:last-child {
@@ -4928,7 +4955,7 @@ h4 {
   }
 
   .accordion_table .pricesTable__name:not(.pricesTable__name_look) {
-    background-color: #ECECEC !important;
+    background-color: #ececec !important;
   }
 
   .accordion_table .accordion__txt {
@@ -4945,7 +4972,7 @@ h4 {
   .accordion_table .accordion__h4 {
     padding: 12px 16px;
     border-radius: 8px;
-    background: #F5F5F5;
+    background: #f5f5f5;
     color: var(--new-collors-secondary, #414141);
     font-family: Gilroy;
     font-size: 14px;
