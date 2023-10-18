@@ -662,23 +662,23 @@ var tabs = function tabs(headerSelector, tabSelector, contentSelector, activeCla
   }
   hideTabContent();
   showTabContent();
-  var rentTab = document.querySelector('.pricesTabs__title_rent');
-  var titleService = document.querySelector('.pricesTabs__titleService');
-  var titleServiceBtn = document.querySelector('.pricesTabs__title_service');
-  var pricesTabstitleWrapper = document.querySelector('.pricesTabs__titleWrapper');
+  var rentTab = document.querySelector(".pricesTabs__title_rent");
+  var titleService = document.querySelector(".pricesTabs__titleService");
+  var titleServiceBtn = document.querySelector(".pricesTabs__title_service");
+  var pricesTabstitleWrapper = document.querySelector(".pricesTabs__titleWrapper");
 
   // Функция для проверки и добавления класса
   function checkAndAddClass() {
-    if (rentTab.classList.contains('pricesTabs__title_active')) {
-      titleService.classList.add('pricesTabs__titleService_hidden');
+    if (rentTab.classList.contains("pricesTabs__title_active")) {
+      titleService.classList.add("pricesTabs__titleService_hidden");
     } else {
-      titleService.classList.remove('pricesTabs__titleService_hidden');
+      titleService.classList.remove("pricesTabs__titleService_hidden");
     }
-    if (titleServiceBtn.classList.contains('pricesTabs__title_active')) {
-      pricesTabstitleWrapper.classList.add('pricesTabs__titleService_hidden');
-      titleService.classList.add('pricesTabs__titleService_hidden');
+    if (titleServiceBtn.classList.contains("pricesTabs__title_active")) {
+      pricesTabstitleWrapper.classList.add("pricesTabs__titleService_hidden");
+      titleService.classList.add("pricesTabs__titleService_hidden");
     } else {
-      pricesTabstitleWrapper.classList.remove('pricesTabs__titleService_hidden');
+      pricesTabstitleWrapper.classList.remove("pricesTabs__titleService_hidden");
     }
 
     // Объявите флаг для отслеживания инициализации свайпера
@@ -686,7 +686,7 @@ var tabs = function tabs(headerSelector, tabSelector, contentSelector, activeCla
 
     // Проверьте, инициализирован ли свайпер
     if (!isSwiperInitialized) {
-      var swiperTariffs2 = new swiper__WEBPACK_IMPORTED_MODULE_0__["default"]('.swiperTariffs_2', {
+      var swiperTariffs2 = new swiper__WEBPACK_IMPORTED_MODULE_0__["default"](".swiperTariffs_2", {
         slidesPerView: 1,
         spaceBetween: 20,
         autoHeight: true,
@@ -699,7 +699,7 @@ var tabs = function tabs(headerSelector, tabSelector, contentSelector, activeCla
         },
         // If we need pagination
         pagination: {
-          el: '.swiper-pagination'
+          el: ".swiper-pagination"
         }
       });
       isSwiperInitialized = true;
@@ -717,18 +717,18 @@ var tabs = function tabs(headerSelector, tabSelector, contentSelector, activeCla
     }
     checkAndAddClass();
   });
-  var pricesTabsBackBtn = document.querySelector('.pricesTabs__backBtn');
-  pricesTabsBackBtn.addEventListener('click', function (e) {
+  var pricesTabsBackBtn = document.querySelector(".pricesTabs__backBtn");
+  pricesTabsBackBtn.addEventListener("click", function (e) {
     hideTabContent();
-    showTabContent(0);
-    document.querySelector('.pricesTabs__titleWrapper').classList.remove('pricesTabs__titleService_hidden');
+    showTabContent(1);
+    document.querySelector(".pricesTabs__titleWrapper").classList.remove("pricesTabs__titleService_hidden");
   });
   if (window.location.href.endsWith("#sobstvennost")) {
     // Вызовите функцию showTabContent(1)
     hideTabContent();
     showTabContent(1);
     checkAndAddClass();
-    console.log('go');
+    console.log("go");
     console.log(window.location.href);
   }
   if (window.location.href.endsWith("#tariffs")) {
@@ -736,7 +736,7 @@ var tabs = function tabs(headerSelector, tabSelector, contentSelector, activeCla
     hideTabContent();
     showTabContent(2);
     checkAndAddClass();
-    console.log('go');
+    console.log("go");
     console.log(window.location.href);
   }
 
