@@ -722,6 +722,7 @@ var tabs = function tabs(headerSelector, tabSelector, contentSelector, activeCla
     hideTabContent();
     showTabContent(1);
     document.querySelector(".pricesTabs__titleWrapper").classList.remove("pricesTabs__titleService_hidden");
+    document.querySelector(".pricesTabs__titleService").classList.remove("pricesTabs__titleService_hidden");
   });
   if (window.location.href.endsWith("#sobstvennost")) {
     // Вызовите функцию showTabContent(1)

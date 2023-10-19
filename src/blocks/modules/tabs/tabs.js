@@ -100,6 +100,9 @@ const tabs = (headerSelector, tabSelector, contentSelector, activeClass) => {
     document
       .querySelector(".pricesTabs__titleWrapper")
       .classList.remove("pricesTabs__titleService_hidden");
+    document
+      .querySelector(".pricesTabs__titleService")
+      .classList.remove("pricesTabs__titleService_hidden");
   });
 
   if (window.location.href.endsWith("#sobstvennost")) {
