@@ -8,7 +8,6 @@
 .accordion__item {
     position: relative;
     overflow: hidden;
-    cursor: pointer;
     border-top: 1px solid var(--grey);
 
     &:last-child {
@@ -22,7 +21,6 @@
 
 .accordion__h4 {
     position: relative;
-    cursor: pointer;
     transition: all 0.25s;
     font-size: 18px;
     transition: all .25s;
@@ -114,10 +112,16 @@
 }
 
 .acc-active {
+    position: sticky;
+    left: 0;
+    right: 0;
     color: var(--green);
     transition: all .25s;
 }
 
+.accordion__h4.acc-active {
+    border: 1px solid var(--grey);
+}
 
 .acc-active+.accordion__txt {
     max-height: 1000px;

@@ -10,12 +10,12 @@
 document.addEventListener("DOMContentLoaded", function () {
   var checkAccordion = document.querySelector(".accordion");
   if (checkAccordion) {
-    var btns = document.querySelectorAll(".accordion__h4");
-    btns.forEach(function (btn) {
-      console.log('click');
+    var _btns = document.querySelectorAll(".accordion__h4");
+    _btns.forEach(function (btn) {
+      console.log("click");
       btn.addEventListener("click", function () {
         if (!this.classList.contains("acc-active")) {
-          btns.forEach(function (btn) {
+          _btns.forEach(function (btn) {
             btn.classList.remove("acc-active");
           });
           this.classList.add("acc-active");
@@ -25,6 +25,37 @@ document.addEventListener("DOMContentLoaded", function () {
       });
     });
   }
+  var tableAccordion = document.querySelector(".accordion_table");
+  var btns = document.querySelectorAll(".accordion__h4");
+  function toggleAccordion() {
+    if (innerWidth <= 999) {
+      btns.forEach(function (btn) {
+        console.log("click");
+        btn.addEventListener("click", function () {
+          if (!this.classList.contains("acc-active")) {
+            btns.forEach(function (btn) {
+              btn.classList.remove("acc-active");
+            });
+            this.classList.add("acc-active");
+          } else {
+            this.classList.remove("acc-active");
+          }
+        });
+      });
+    } else {
+      // Если экран становится шире 999 пикселей, убираем обработчики
+      btns.forEach(function (btn) {
+        btn.removeEventListener("click", toggleAccordion);
+        btn.classList.remove("acc-active");
+      });
+    }
+  }
+
+  // Исполнить при загрузке страницы
+  toggleAccordion();
+
+  // Добавить обработчик события изменения размера экрана
+  window.addEventListener("resize", toggleAccordion);
 });
 
 /***/ }),
@@ -139,13 +170,20 @@ window.addEventListener("DOMContentLoaded", function () {
   //Hidden header
   var headerTag = document.querySelector(".header");
   var scrollPrev = 0;
+  var pricesHeader = document.querySelectorAll('.pricesTable__row_header');
   window.addEventListener("scroll", function () {
     var scrolled = window.scrollY;
     if (scrolled > 100 && scrolled > scrollPrev) {
       headerTag.classList.add("out");
+      pricesHeader.forEach(function (i) {
+        i.classList.remove('pricesTable__row_header_active');
+      });
       closeMenu(); // Закрыть меню при скролле
     } else {
       headerTag.classList.remove("out");
+      pricesHeader.forEach(function (i) {
+        i.classList.add('pricesTable__row_header_active');
+      });
     }
     scrollPrev = scrolled;
   });
@@ -305,22 +343,34 @@ createMenu();
 /*!*****************************************************!*\
   !*** ./src/blocks/modules/pagePrices/pagePrices.js ***!
   \*****************************************************/
-/***/ (() => {
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-if (document.querySelectorAll('.btn_pricesTableOpenHidden')) {
-  var buttons = document.querySelectorAll('.btn_pricesTableOpenHidden');
-  var buttonSpans = document.querySelectorAll('.btn_pricesTableOpenHidden .btn__span');
-  var rows = document.querySelectorAll('.pricesTable__row_openHidden');
-  buttons.forEach(function (button, index) {
-    button.addEventListener('click', function () {
-      rows.forEach(function (row) {
-        row.classList.toggle('hide');
-      });
-      var buttonText = buttonSpans[index].textContent.trim();
-      buttonSpans[index].textContent = buttonText === 'Свернуть' ? 'Развернуть все' : 'Свернуть';
-    });
-  });
-}
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var swiper__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! swiper */ "./node_modules/swiper/swiper.esm.js");
+
+swiper__WEBPACK_IMPORTED_MODULE_0__["default"].use([swiper__WEBPACK_IMPORTED_MODULE_0__.Pagination, swiper__WEBPACK_IMPORTED_MODULE_0__.Breakpoints, swiper__WEBPACK_IMPORTED_MODULE_0__.Autoplay]);
+var swiperTariffs = new swiper__WEBPACK_IMPORTED_MODULE_0__["default"]('.swiperTariffs_1', {
+  loop: true,
+  slidesPerView: 1,
+  spaceBetween: 20,
+  autoHeight: true,
+  observer: true,
+  observerUpdate: true,
+  breakpoints: {
+    // when window width is >= 640px
+    640: {
+      slidesPerView: 2
+    },
+    999: {
+      slidesPerView: 4
+    }
+  },
+  // If we need pagination
+  pagination: {
+    el: '.swiper-pagination'
+  }
+});
 if (document.querySelector('.tariffsToggle__btn_parts')) {
   // Получите ссылки на элементы кнопок и блоков
   var btnParts = document.querySelector('.tariffsToggle__btn_parts');
@@ -586,8 +636,13 @@ window.addEventListener('scroll', throttleScroll);
 /*!*****************************************!*\
   !*** ./src/blocks/modules/tabs/tabs.js ***!
   \*****************************************/
-/***/ (() => {
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var swiper__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! swiper */ "./node_modules/swiper/swiper.esm.js");
+
+swiper__WEBPACK_IMPORTED_MODULE_0__["default"].use([swiper__WEBPACK_IMPORTED_MODULE_0__.Pagination, swiper__WEBPACK_IMPORTED_MODULE_0__.Breakpoints, swiper__WEBPACK_IMPORTED_MODULE_0__.Autoplay]);
 var tabs = function tabs(headerSelector, tabSelector, contentSelector, activeClass) {
   var header = document.querySelector(headerSelector),
     tab = document.querySelectorAll(tabSelector),
@@ -607,6 +662,49 @@ var tabs = function tabs(headerSelector, tabSelector, contentSelector, activeCla
   }
   hideTabContent();
   showTabContent();
+  var rentTab = document.querySelector(".pricesTabs__title_rent");
+  var titleService = document.querySelector(".pricesTabs__titleService");
+  var titleServiceBtn = document.querySelector(".pricesTabs__title_service");
+  var pricesTabstitleWrapper = document.querySelector(".pricesTabs__titleWrapper");
+
+  // Функция для проверки и добавления класса
+  function checkAndAddClass() {
+    if (rentTab.classList.contains("pricesTabs__title_active")) {
+      titleService.classList.add("pricesTabs__titleService_hidden");
+    } else {
+      titleService.classList.remove("pricesTabs__titleService_hidden");
+    }
+    if (titleServiceBtn.classList.contains("pricesTabs__title_active")) {
+      pricesTabstitleWrapper.classList.add("pricesTabs__titleService_hidden");
+      titleService.classList.add("pricesTabs__titleService_hidden");
+    } else {
+      pricesTabstitleWrapper.classList.remove("pricesTabs__titleService_hidden");
+    }
+
+    // Объявите флаг для отслеживания инициализации свайпера
+    var isSwiperInitialized = false;
+
+    // Проверьте, инициализирован ли свайпер
+    if (!isSwiperInitialized) {
+      var swiperTariffs2 = new swiper__WEBPACK_IMPORTED_MODULE_0__["default"](".swiperTariffs_2", {
+        slidesPerView: 1,
+        spaceBetween: 20,
+        autoHeight: true,
+        observer: true,
+        observerUpdate: true,
+        breakpoints: {
+          640: {
+            slidesPerView: 2
+          }
+        },
+        // If we need pagination
+        pagination: {
+          el: ".swiper-pagination"
+        }
+      });
+      isSwiperInitialized = true;
+    }
+  }
   header.addEventListener("click", function (e) {
     var target = e.target;
     if (target && (target.classList.contains(tabSelector.replace(/\./, "")) || target.parentNode.classList.contains(tabSelector.replace(/\./, "")))) {
@@ -617,7 +715,31 @@ var tabs = function tabs(headerSelector, tabSelector, contentSelector, activeCla
         }
       });
     }
+    checkAndAddClass();
   });
+  var pricesTabsBackBtn = document.querySelector(".pricesTabs__backBtn");
+  pricesTabsBackBtn.addEventListener("click", function (e) {
+    hideTabContent();
+    showTabContent(1);
+    document.querySelector(".pricesTabs__titleWrapper").classList.remove("pricesTabs__titleService_hidden");
+    document.querySelector(".pricesTabs__titleService").classList.remove("pricesTabs__titleService_hidden");
+  });
+  if (window.location.href.endsWith("#sobstvennost")) {
+    // Вызовите функцию showTabContent(1)
+    hideTabContent();
+    showTabContent(1);
+    checkAndAddClass();
+    console.log("go");
+    console.log(window.location.href);
+  }
+  if (window.location.href.endsWith("#tariffs")) {
+    // Вызовите функцию showTabContent(1)
+    hideTabContent();
+    showTabContent(2);
+    checkAndAddClass();
+    console.log("go");
+    console.log(window.location.href);
+  }
 
   // Получаем все кастомные селекты
   var selects = document.querySelectorAll(".custom-select_qa, .custom-select_help, .custom-select_prices");
@@ -669,6 +791,10 @@ if (pricesTabs) {
 var supplierTabs = document.querySelector(".supplierTabs");
 if (supplierTabs) {
   tabs(".supplierTabs__titles", ".supplierTabs__title", ".supplierTabs__item", "supplierTabs__title_active");
+}
+var searchTabs = document.querySelector(".searchTabs");
+if (supplierTabs) {
+  tabs(".searchTabs__titles", ".searchTabs__title", ".searchTabs__item", "searchTabs__title_active");
 }
 
 /***/ }),
@@ -739,9 +865,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _modules_accordion_accordion__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! %modules%/accordion/accordion */ "./src/blocks/modules/accordion/accordion.js");
 /* harmony import */ var _modules_accordion_accordion__WEBPACK_IMPORTED_MODULE_11___default = /*#__PURE__*/__webpack_require__.n(_modules_accordion_accordion__WEBPACK_IMPORTED_MODULE_11__);
 /* harmony import */ var _modules_tabs_tabs__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! %modules%/tabs/tabs */ "./src/blocks/modules/tabs/tabs.js");
-/* harmony import */ var _modules_tabs_tabs__WEBPACK_IMPORTED_MODULE_12___default = /*#__PURE__*/__webpack_require__.n(_modules_tabs_tabs__WEBPACK_IMPORTED_MODULE_12__);
 /* harmony import */ var _modules_pagePrices_pagePrices__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! %modules%/pagePrices/pagePrices */ "./src/blocks/modules/pagePrices/pagePrices.js");
-/* harmony import */ var _modules_pagePrices_pagePrices__WEBPACK_IMPORTED_MODULE_13___default = /*#__PURE__*/__webpack_require__.n(_modules_pagePrices_pagePrices__WEBPACK_IMPORTED_MODULE_13__);
 /* harmony import */ var _modules_pageArticle_pageArticle__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! %modules%/pageArticle/pageArticle */ "./src/blocks/modules/pageArticle/pageArticle.js");
 /* harmony import */ var _modules_pageArticle_pageArticle__WEBPACK_IMPORTED_MODULE_14___default = /*#__PURE__*/__webpack_require__.n(_modules_pageArticle_pageArticle__WEBPACK_IMPORTED_MODULE_14__);
 

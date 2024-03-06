@@ -1,20 +1,29 @@
 
-if (document.querySelectorAll('.btn_pricesTableOpenHidden')) {
-    const buttons = document.querySelectorAll('.btn_pricesTableOpenHidden');
-    const buttonSpans = document.querySelectorAll('.btn_pricesTableOpenHidden .btn__span');
-    const rows = document.querySelectorAll('.pricesTable__row_openHidden');
+import Swiper, { Pagination, Breakpoints, Autoplay } from 'swiper';
+Swiper.use([Pagination, Breakpoints, Autoplay]);
 
-    buttons.forEach((button, index) => {
-        button.addEventListener('click', () => {
-            rows.forEach(row => {
-                row.classList.toggle('hide');
-            });
 
-            const buttonText = buttonSpans[index].textContent.trim();
-            buttonSpans[index].textContent = buttonText === 'Свернуть' ? 'Развернуть все' : 'Свернуть';
-        });
-    });
-}
+const swiperTariffs = new Swiper('.swiperTariffs_1', {
+    loop: true,
+    slidesPerView: 1,
+    spaceBetween: 20,
+    autoHeight: true,
+    observer: true,
+    observerUpdate: true,
+    breakpoints: {
+        // when window width is >= 640px
+        640: {
+            slidesPerView: 2,
+        },
+        999: {
+            slidesPerView: 4,
+        }
+    },
+    // If we need pagination
+    pagination: {
+        el: '.swiper-pagination',
+    },
+});
 
 
 if (document.querySelector('.tariffsToggle__btn_parts')) {
@@ -31,6 +40,7 @@ if (document.querySelector('.tariffsToggle__btn_parts')) {
 
         btnParts.classList.add('active'); // Добавьте класс active к btnParts
         btnOwn.classList.remove('active'); // Уберите класс active с btnOwn
+
     });
 
     // Добавьте обработчик события клика на кнопку btnOwn

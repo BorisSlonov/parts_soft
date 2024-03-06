@@ -193,13 +193,26 @@ h4 {
 .section {
     padding: 50px 0;
 
+    @media(max-width:767px) {
+        padding: 30px 0;
+    }
+
     &_screen1 {
         padding-bottom: 0;
     }
 
-    @media(max-width:767px) {
-        padding: 30px 0;
+    &_pricesTabs {
+        padding-top: 0;
+
+        @media(max-width:767px) {
+            padding-top: 0;
+        }
     }
+
+    &_pagePrices {
+        padding-bottom: 30px;
+    }
+
 
 }
 

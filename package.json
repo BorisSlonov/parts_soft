@@ -93,5 +93,6 @@
         "*.js": [
             "eslint --fix"
         ]
-    }
+    },
+    "packageManager": "yarn@4.1.1"
 }
