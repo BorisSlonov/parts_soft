@@ -1,0 +1,22 @@
+.ourClients {
+    &__body {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 40px;
+    }
+
+    &__item {
+        &_img {
+            background-image: url('../img/clientsPc.webp');
+            background-size: contain;
+            background-position: 50% 50%;
+            height: 185px;
+            width: 100%;
+            background-repeat: no-repeat;
+            @media(max-width:767px) {
+                background-image: url('../img/clientsMob.webp');
+            }
+        }
+    }
+}

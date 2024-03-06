@@ -1,0 +1,49 @@
+.reviews {
+    &__btnWrapper {
+        margin-top: 40px;
+        text-align: center;
+    }
+}
+
+.reviewCard {
+    margin: 20px;
+    padding: 30px 20px;
+    border-radius: 15px;
+    box-shadow: 0px 1px 20px -3px rgba(0, 0, 0, 0.15);
+
+    &__header {
+        display: flex;
+        align-items: center;
+        gap: 15px;
+    }
+
+    &__img {
+        max-width: 48px;
+    }
+
+    &__h3 {
+        font-size: 21px;
+    }
+
+    &__p {
+        margin-top: 20px;
+    }
+}
+
+.swiperReviews {
+
+    @media(min-width:999px) {
+        .swiper-slide {
+            flex-basis: 33.333%;
+        }
+
+        .swiper-pagination {
+            display: none;
+        }
+
+        &.swiper_pagination {
+            padding-bottom: 0;
+        }
+    }
+
+}

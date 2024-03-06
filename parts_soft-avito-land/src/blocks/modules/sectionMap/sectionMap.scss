@@ -1,0 +1,13 @@
+.sectionMap {
+    &__subtitle {
+        text-align: center;
+    }
+    &__body {
+        margin-top: 40px;
+        @media(max-width:767px) {
+            iframe {
+                height: 250px;
+            }
+        }
+    }
+}
