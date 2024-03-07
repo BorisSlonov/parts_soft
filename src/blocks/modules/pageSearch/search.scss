@@ -1,0 +1,576 @@
+.pageSearch {
+    font-family: "Gilroy";
+
+    &__logo {
+        display: block;
+        margin: 0 auto;
+        max-width: 180px;
+    }
+
+    &__header {
+        margin-top: 20px;
+        display: flex;
+        height: 40px;
+        border: 1px solid #D2D2D2;
+        border-radius: 100px;
+    }
+
+
+    &__btnIcon {
+        position: relative;
+
+        &::before {
+            content: '';
+            position: absolute;
+            width: 24px;
+            height: 24px;
+            background-size: contain;
+            background-repeat: no-repeat;
+            background-position: 50% 50%;
+            left: -34px;
+            top: 50%;
+            transform: translateY(-50%);
+
+            @media(max-width:767px) {
+                width: 20px;
+                height: 20px;
+                left: -30px;
+            }
+        }
+    }
+
+    .searchTabs__title_fixed .pageSearch__tgBtn {
+        &::before {
+            background-image: url(../img/search/tgBlack.svg);
+        }
+    }
+
+    &__planfixBtn {
+        &::before {
+            background-image: url(../img/search/planfix.svg);
+        }
+    }
+
+    &__tgBtn {
+        &::before {
+            background-image: url(../img/search/tg.svg);
+        }
+    }
+
+
+
+    &__partsSoftBtn {
+        &::before {
+            background-image: url(../img/search/parts_soft.svg);
+        }
+    }
+
+    &__customSelect {
+        max-width: 180px;
+        position: relative;
+
+        @media(max-width:450px) {
+            max-width: 80px;
+        }
+
+        &::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 5px;
+            bottom: 5px;
+            width: 1px;
+            background-color: #C9C9C9;
+        }
+
+        .select-selected {
+            border: none;
+            text-align: center;
+            color: #252525;
+            font-size: 13px;
+            font-family: 'Gilroy';
+            padding-right: 20px;
+
+            &::before,
+            &::after {
+                background-color: #252525;
+                height: 1px;
+
+                @media(max-width:450px) {
+                    display: none;
+                }
+            }
+
+            &::before {
+                right: 50px;
+            }
+
+            &::after {
+                right: 45px;
+            }
+
+            &.show {
+                color: #E46117;
+
+                &::before {
+                    background-color: #E46117;
+                }
+
+                &::after {
+                    background-color: #E46117;
+                }
+            }
+        }
+
+        .select-dropdown {
+            box-shadow: 0 2px 10px 0 rgba(24, 38, 73, 0.1);
+            background: #fff;
+            border: none;
+            text-align: center;
+            font-size: 12px;
+            font-family: "Gilroy";
+
+            @media(max-width:450px) {
+                position: fixed;
+                bottom: 0;
+                left: 0;
+                right: 0;
+                border-radius: 20px 20px 0 0;
+                padding: 16px 8px;
+                box-shadow: 0 0 10px 0 rgba(16, 26, 52, 0.2);
+
+            }
+
+            &.show {
+                @media(max-width:450px) {
+                    max-height: 50%;
+                }
+            }
+        }
+    }
+
+    &__closeDropdown {
+        color: #f58c3f;
+        font-size: 13px;
+        border: 1px solid #f58c3f;
+        border-radius: 100px;
+        padding: 8px 24px;
+        width: 100%;
+        background-color: transparent;
+        display: none;
+
+        @media(max-width:450px) {
+            display: block;
+        }
+    }
+
+    &__searchLabel {
+        position: relative;
+        width: 100%;
+
+        &:before {
+            content: '';
+            position: absolute;
+            left: 20px;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 20px;
+            height: 20px;
+            background-size: contain;
+            background-repeat: no-repeat;
+            background-position: 50% 50%;
+            background-image: url('../img/search/search.svg');
+        }
+    }
+
+    &__searchInput {
+        font-family: "Gilroy";
+        width: 100%;
+        height: 100%;
+        border: none;
+        background-color: transparent;
+        padding-left: 56px;
+        padding-right: 20px;
+        font-size: 13px;
+
+        &::placeholder {
+            color: #9D9D9D;
+
+        }
+
+        &:focus {
+            outline: none;
+        }
+    }
+
+    &__hint {
+        margin-top: 16px;
+        display: flex;
+        gap: 6px;
+        color: #E3427C;
+        font-size: 14px;
+    }
+
+    &__hintSvg {
+        width: 20px;
+        height: 20px;
+
+        @media(max-width:767px) {
+            display: none;
+        }
+    }
+
+    &__body {
+        margin-top: 30px;
+    }
+}
+
+
+// searchTabs
+
+.searchTabs {
+    &__titles {
+        position: relative;
+        display: flex;
+        gap: 24px;
+
+        @media(max-width:1023px) {
+            flex-direction: column;
+        }
+    }
+
+    &__title {
+        width: 100%;
+        text-align: center;
+        background-color: #3F3F3F;
+        padding: 10px;
+        border-radius: 100px;
+        box-shadow: 0 0 10px 0 rgba(40, 30, 103, 0.12);
+        background: #3f3f3f;
+        font-family: var(--font-family);
+        font-weight: 400;
+        font-size: 18px;
+        color: #fff;
+        border: none;
+        cursor: pointer;
+
+        &_fixed {
+            transition: color .3s;
+
+            &:hover {
+                color: #F46700;
+            }
+
+            .pageSearch__btnIcon {
+                display: flex;
+                align-items: center;
+                gap: 6px;
+            }
+
+            @media(min-width:1023px) {
+                position: absolute;
+                right: -240px;
+                max-width: 180px;
+                background-color: transparent;
+                box-shadow: none;
+                color: #000;
+            }
+
+            &.last {
+                top: 60px;
+            }
+        }
+
+        &_fixedActive {
+            position: relative;
+
+            &:hover {
+                &::after {
+                    color: #F58C3F;
+                }
+            }
+
+
+            &::before {
+                content: '';
+                background: url('data:image/svg+xml,<svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M6.272 0.333879C6.3144 0.290336 6.36508 0.255727 6.42108 0.232095C6.47707 0.208464 6.53722 0.196289 6.598 0.196289C6.65877 0.196289 6.71893 0.208464 6.77492 0.232095C6.83091 0.255727 6.8816 0.290336 6.924 0.333879C7.01092 0.423131 7.05956 0.542794 7.05956 0.667379C7.05956 0.791965 7.01092 0.911627 6.924 1.00088L2.051 5.99888L6.924 10.9979C6.96786 11.0428 7.00245 11.0959 7.02579 11.1542C7.04913 11.2125 7.06076 11.2748 7.06002 11.3375C7.05928 11.4003 7.04617 11.4623 7.02146 11.52C6.99675 11.5777 6.96092 11.63 6.916 11.6739C6.87322 11.7157 6.82261 11.7487 6.76707 11.7709C6.71153 11.7931 6.65216 11.8042 6.59234 11.8034C6.53252 11.8027 6.47344 11.7902 6.41847 11.7666C6.36351 11.7429 6.31373 11.7087 6.272 11.6659L1.09 6.34788C0.998985 6.2545 0.948048 6.12927 0.948048 5.99888C0.948048 5.86849 0.998985 5.74325 1.09 5.64988L6.272 0.333879ZM10.272 0.333879C10.3144 0.290336 10.3651 0.255727 10.4211 0.232095C10.4771 0.208464 10.5372 0.196289 10.598 0.196289C10.6588 0.196289 10.7189 0.208464 10.7749 0.232095C10.8309 0.255727 10.8816 0.290336 10.924 0.333879C11.0109 0.423131 11.0596 0.542794 11.0596 0.667379C11.0596 0.791965 11.0109 0.911627 10.924 1.00088L6.051 5.99888L10.924 10.9979C10.9679 11.0428 11.0025 11.0959 11.0258 11.1542C11.0491 11.2125 11.0608 11.2748 11.06 11.3375C11.0593 11.4003 11.0462 11.4623 11.0215 11.52C10.9968 11.5777 10.9609 11.63 10.916 11.6739C10.8732 11.7157 10.8226 11.7487 10.7671 11.7709C10.7115 11.7931 10.6522 11.8042 10.5923 11.8034C10.5325 11.8027 10.4734 11.7902 10.4185 11.7666C10.3635 11.7429 10.3137 11.7087 10.272 11.6659L5.09 6.34788C4.99899 6.2545 4.94805 6.12927 4.94805 5.99888C4.94805 5.86849 4.99899 5.74325 5.09 5.64988L10.272 0.333879Z" fill="white" /></svg>');
+                width: 10px;
+                height: 11px;
+                position: absolute;
+                top: 50%;
+                transform: translateY(-50%);
+                right: 100px;
+
+            }
+
+            &::after {
+                content: 'Скрыть';
+                position: absolute;
+                top: 50%;
+                transform: translateY(-50%);
+                right: 48px;
+                font-size: 13px;
+                font-weight: 400;
+            }
+        }
+
+        @media(max-width:767px) {
+            font-size: 14px;
+        }
+
+    }
+
+    &__items {
+        display: flex;
+        gap: 24px;
+        margin-top: 24px;
+    }
+
+    &__item {
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+        position: relative;
+        width: 100%;
+
+        &:not(:last-child) {
+            &::before {
+                content: '';
+                position: absolute;
+                top: 0;
+                bottom: 0;
+                right: -12px;
+                width: 1px;
+                background-color: #d8d8d8;
+                display: var(--before-display, block);
+
+                @media(max-width:1023px) {
+                    display: none;
+                }
+            }
+        }
+    }
+
+    &__empty {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 6px;
+        font-weight: 400;
+        font-size: 13px;
+        color: #585858;
+    }
+
+    &__emptySvg {
+        width: 24px;
+        height: 24px;
+    }
+
+    &__moreBtn {
+        display: flex;
+        justify-content: center;
+        gap: 6px;
+        align-items: center;
+        border: none;
+        background-color: transparent;
+        cursor: pointer;
+        transition: all .3s;
+        font-weight: 400;
+        font-size: 13px;
+        color: #000;
+        font-family: "Gilroy";
+        margin-left: auto;
+        margin-right: auto;
+        margin-top: 16px;
+
+        &:hover {
+            color: #f46700;
+
+            .searchTabs__moreSvg path {
+                fill: #f46700;
+            }
+        }
+    }
+
+    &__moreSvg {
+        width: 11px;
+        height: 13px;
+
+        path {
+            transition: all .3s;
+        }
+    }
+}
+
+
+.searchInfoCard {
+    display: grid;
+    gap: 8px;
+    border-radius: 12px;
+    padding: 8px 12px;
+    transition: all .3s;
+
+
+    &:hover {
+        background: #f6f6f6;
+    }
+
+    &__header {
+        display: flex;
+        gap: 12px;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    &__title,
+    &__txt {
+        overflow: hidden;
+        display: -webkit-box;
+        -webkit-box-orient: vertical;
+        -webkit-line-clamp: 1;
+        text-overflow: ellipsis;
+    }
+
+    &__date {
+        font-weight: 400;
+        font-size: 12px;
+        line-height: 133%;
+        color: #707991;
+    }
+
+    &__title {
+        font-weight: 500;
+        font-size: 13px;
+        line-height: 138%;
+        color: #252525;
+    }
+
+    &__txt {
+        font-weight: 400;
+        font-size: 12px;
+        line-height: 133%;
+        color: #4c515f;
+    }
+
+    &__footer {
+        display: flex;
+        align-items: center;
+        justify-content: flex-end;
+        gap: 16px;
+    }
+
+    &__footerLinkIcon {
+        position: relative;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        &_planfix {
+            &:hover {
+                &::before {
+                    height: 34px;
+
+                }
+            }
+
+            &::before {
+                content: '';
+                position: absolute;
+                width: 76px;
+                height: 0;
+                background-image: url(../img/search/to_planfix.svg);
+                background-size: contain;
+                background-repeat: no-repeat;
+                background-position: 50% 50%;
+                top: 22px;
+                transition: all .3s;
+            }
+        }
+
+        &_tg {
+            &:hover {
+                &::before {
+                    height: 34px;
+
+                }
+
+                svg path {
+                    fill: #518CC3;
+                }
+            }
+
+            &::before {
+                content: '';
+                position: absolute;
+                width: 89px;
+                height: 0;
+                background-image: url(../img/search/to_tg.svg);
+                background-size: contain;
+                background-repeat: no-repeat;
+                background-position: 50% 50%;
+                top: 22px;
+                transition: all .3s;
+            }
+
+        }
+
+        &_local {
+            &:hover {
+                &::before {
+                    height: 34px;
+
+                }
+
+                svg path {
+                    fill: #4B8125;
+                }
+            }
+
+            &::before {
+                content: '';
+                position: absolute;
+                width: 190px;
+                height: 0;
+                background-image: url(../img/search/to_local.svg);
+                background-size: contain;
+                background-repeat: no-repeat;
+                background-position: 50% 50%;
+                top: 22px;
+                transition: all .3s;
+            }
+
+        }
+    }
+
+    &__footerLink {
+        display: flex;
+        align-items: center;
+        gap: 4px;
+        text-decoration: none;
+        font-size: 12px;
+        color: #000;
+        transition: all .3s;
+        line-height: 1;
+
+        svg path {
+            transition: all .3s;
+        }
+
+        &:hover {
+            color: #F46700;
+
+            svg path {
+                fill: #F46700;
+            }
+        }
+
+        &_local {
+            &:hover {
+                svg path {
+                    fill: #4B8125;
+                }
+            }
+        }
+
+    }
+}

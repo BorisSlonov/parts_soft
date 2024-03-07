@@ -399,6 +399,16 @@ if (document.querySelector('.tariffsToggle__btn_parts')) {
 
 /***/ }),
 
+/***/ "./src/blocks/modules/pageSearch/search.js":
+/*!*************************************************!*\
+  !*** ./src/blocks/modules/pageSearch/search.js ***!
+  \*************************************************/
+/***/ (() => {
+
+
+
+/***/ }),
+
 /***/ "./src/blocks/modules/partnersIntegrations/partnersIntegrations.js":
 /*!*************************************************************************!*\
   !*** ./src/blocks/modules/partnersIntegrations/partnersIntegrations.js ***!
@@ -668,6 +678,7 @@ var tabs = function tabs(headerSelector, tabSelector, contentSelector, activeCla
   var pricesTabstitleWrapper = document.querySelector(".pricesTabs__titleWrapper");
 
   // Функция для проверки и добавления класса
+
   function checkAndAddClass() {
     if (rentTab.classList.contains("pricesTabs__title_active")) {
       titleService.classList.add("pricesTabs__titleService_hidden");
@@ -715,15 +726,19 @@ var tabs = function tabs(headerSelector, tabSelector, contentSelector, activeCla
         }
       });
     }
-    checkAndAddClass();
+    if (rentTab) {
+      checkAndAddClass();
+    }
   });
   var pricesTabsBackBtn = document.querySelector(".pricesTabs__backBtn");
-  pricesTabsBackBtn.addEventListener("click", function (e) {
-    hideTabContent();
-    showTabContent(1);
-    document.querySelector(".pricesTabs__titleWrapper").classList.remove("pricesTabs__titleService_hidden");
-    document.querySelector(".pricesTabs__titleService").classList.remove("pricesTabs__titleService_hidden");
-  });
+  if (pricesTabsBackBtn) {
+    pricesTabsBackBtn.addEventListener("click", function (e) {
+      hideTabContent();
+      showTabContent(1);
+      document.querySelector(".pricesTabs__titleWrapper").classList.remove("pricesTabs__titleService_hidden");
+      document.querySelector(".pricesTabs__titleService").classList.remove("pricesTabs__titleService_hidden");
+    });
+  }
   if (window.location.href.endsWith("#sobstvennost")) {
     // Вызовите функцию showTabContent(1)
     hideTabContent();
@@ -793,8 +808,71 @@ if (supplierTabs) {
   tabs(".supplierTabs__titles", ".supplierTabs__title", ".supplierTabs__item", "supplierTabs__title_active");
 }
 var searchTabs = document.querySelector(".searchTabs");
-if (supplierTabs) {
+if (searchTabs && window.innerWidth <= 1023) {
   tabs(".searchTabs__titles", ".searchTabs__title", ".searchTabs__item", "searchTabs__title_active");
+}
+
+// Получаем элементы
+var titles = document.querySelectorAll('.searchTabs__title');
+var items = document.querySelectorAll('.searchTabs__item');
+if (titles && window.innerWidth <= 1023) {
+  titles.forEach(function (title, index) {
+    if (items[index]) {
+      title.parentNode.insertBefore(items[index], title.nextSibling);
+    }
+  });
+}
+if (titles && window.innerWidth > 1023) {
+  titles.forEach(function (clickedTitle, index) {
+    clickedTitle.addEventListener('click', function () {
+      items.forEach(function (item, itemIndex) {
+        item.style.display = itemIndex === index ? 'block' : 'none';
+      });
+
+      // Дополнение: отмена изменений при клике на searchTabs__title_fixedActive
+      if (clickedTitle.classList.contains('searchTabs__title_fixedActive')) {
+        titles.forEach(function (title) {
+          title.classList.remove('searchTabs__title_fixed');
+          title.classList.remove('searchTabs__title_fixedActive');
+          document.querySelector('.searchTabs').style.width = "100%";
+        });
+        items.forEach(function (item) {
+          item.style.display = 'block'; // Показываем все элементы
+          item.style.removeProperty('--before-display'); // Восстанавливаем стиль ::before
+        });
+
+        titlesContainer.style.width = ''; // Сбрасываем ширину контейнера
+        document.querySelector('.searchTabs').removeProperty('--before-display');
+        // Может потребоваться дополнительная логика восстановления других изменений
+      }
+
+      titles.forEach(function (title) {
+        title.classList.add('searchTabs__title_fixed');
+        title.classList.remove('searchTabs__title_fixedActive');
+        clickedTitle.classList.add('searchTabs__title_fixedActive');
+      });
+      clickedTitle.classList.remove('searchTabs__title_fixed');
+
+      // Получаем элементы
+      var titlesFixed = document.querySelectorAll('.searchTabs__title_fixed');
+      if (titlesFixed.length > 0) {
+        titlesFixed[0].classList.remove('last');
+        titlesFixed[1].classList.add('last');
+
+        // Получаем элементы
+        var _titlesContainer = document.querySelector('.searchTabs');
+        var hasFixedTitle = _titlesContainer.querySelector('.searchTabs__title_fixed');
+        if (hasFixedTitle) {
+          // Если есть элемент с классом searchTabs__title_fixed
+          _titlesContainer.style.width = "calc(100% - 200px)";
+          // Скрываем псевдоэлемент ::before у всех элементов .searchTabs__item
+          items.forEach(function (item) {
+            item.style.setProperty('--before-display', 'none');
+          });
+        }
+      }
+    });
+  });
 }
 
 /***/ }),
@@ -868,6 +946,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _modules_pagePrices_pagePrices__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! %modules%/pagePrices/pagePrices */ "./src/blocks/modules/pagePrices/pagePrices.js");
 /* harmony import */ var _modules_pageArticle_pageArticle__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! %modules%/pageArticle/pageArticle */ "./src/blocks/modules/pageArticle/pageArticle.js");
 /* harmony import */ var _modules_pageArticle_pageArticle__WEBPACK_IMPORTED_MODULE_14___default = /*#__PURE__*/__webpack_require__.n(_modules_pageArticle_pageArticle__WEBPACK_IMPORTED_MODULE_14__);
+/* harmony import */ var _modules_pageSearch_search__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! %modules%/pageSearch/search */ "./src/blocks/modules/pageSearch/search.js");
+/* harmony import */ var _modules_pageSearch_search__WEBPACK_IMPORTED_MODULE_15___default = /*#__PURE__*/__webpack_require__.n(_modules_pageSearch_search__WEBPACK_IMPORTED_MODULE_15__);
+
 
 
 

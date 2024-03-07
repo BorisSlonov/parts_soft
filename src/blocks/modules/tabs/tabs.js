@@ -33,6 +33,7 @@ const tabs = (headerSelector, tabSelector, contentSelector, activeClass) => {
   );
 
   // Функция для проверки и добавления класса
+
   function checkAndAddClass() {
     if (rentTab.classList.contains("pricesTabs__title_active")) {
       titleService.classList.add("pricesTabs__titleService_hidden");
@@ -89,21 +90,24 @@ const tabs = (headerSelector, tabSelector, contentSelector, activeClass) => {
       });
     }
 
-    checkAndAddClass();
+    if (rentTab) {
+      checkAndAddClass();
+    }
   });
 
   const pricesTabsBackBtn = document.querySelector(".pricesTabs__backBtn");
-
-  pricesTabsBackBtn.addEventListener("click", (e) => {
-    hideTabContent();
-    showTabContent(1);
-    document
-      .querySelector(".pricesTabs__titleWrapper")
-      .classList.remove("pricesTabs__titleService_hidden");
-    document
-      .querySelector(".pricesTabs__titleService")
-      .classList.remove("pricesTabs__titleService_hidden");
-  });
+  if (pricesTabsBackBtn) {
+    pricesTabsBackBtn.addEventListener("click", (e) => {
+      hideTabContent();
+      showTabContent(1);
+      document
+        .querySelector(".pricesTabs__titleWrapper")
+        .classList.remove("pricesTabs__titleService_hidden");
+      document
+        .querySelector(".pricesTabs__titleService")
+        .classList.remove("pricesTabs__titleService_hidden");
+    });
+  }
 
   if (window.location.href.endsWith("#sobstvennost")) {
     // Вызовите функцию showTabContent(1)
@@ -204,11 +208,80 @@ if (supplierTabs) {
 }
 
 const searchTabs = document.querySelector(".searchTabs");
-if (supplierTabs) {
+if (searchTabs && window.innerWidth <= 1023) {
   tabs(
     ".searchTabs__titles",
     ".searchTabs__title",
     ".searchTabs__item",
     "searchTabs__title_active"
   );
+}
+
+// Получаем элементы
+const titles = document.querySelectorAll('.searchTabs__title');
+const items = document.querySelectorAll('.searchTabs__item');
+
+if (titles && window.innerWidth <= 1023) {
+  titles.forEach((title, index) => {
+    if (items[index]) {
+      title.parentNode.insertBefore(items[index], title.nextSibling);
+    }
+  });
+}
+
+
+if (titles && window.innerWidth > 1023) {
+  titles.forEach((clickedTitle, index) => {
+    clickedTitle.addEventListener('click', () => {
+      items.forEach((item, itemIndex) => {
+        item.style.display = itemIndex === index ? 'block' : 'none';
+      });
+
+      // Дополнение: отмена изменений при клике на searchTabs__title_fixedActive
+      if (clickedTitle.classList.contains('searchTabs__title_fixedActive')) {
+        titles.forEach((title) => {
+          title.classList.remove('searchTabs__title_fixed');
+          title.classList.remove('searchTabs__title_fixedActive');
+          document.querySelector('.searchTabs').style.width = "100%";
+        });
+
+        items.forEach((item) => {
+          item.style.display = 'block'; // Показываем все элементы
+          item.style.removeProperty('--before-display'); // Восстанавливаем стиль ::before
+        });
+
+        titlesContainer.style.width = ''; // Сбрасываем ширину контейнера
+        document.querySelector('.searchTabs').removeProperty('--before-display');
+        // Может потребоваться дополнительная логика восстановления других изменений
+      }
+
+      titles.forEach((title) => {
+        title.classList.add('searchTabs__title_fixed');
+        title.classList.remove('searchTabs__title_fixedActive');
+        clickedTitle.classList.add('searchTabs__title_fixedActive');
+      });
+      clickedTitle.classList.remove('searchTabs__title_fixed');
+
+      // Получаем элементы
+      const titlesFixed = document.querySelectorAll('.searchTabs__title_fixed');
+      if (titlesFixed.length > 0) {
+        titlesFixed[0].classList.remove('last');
+        titlesFixed[1].classList.add('last');
+
+        // Получаем элементы
+        const titlesContainer = document.querySelector('.searchTabs');
+        const hasFixedTitle = titlesContainer.querySelector('.searchTabs__title_fixed');
+
+        if (hasFixedTitle) {
+          // Если есть элемент с классом searchTabs__title_fixed
+          titlesContainer.style.width = `calc(100% - 200px)`;
+          // Скрываем псевдоэлемент ::before у всех элементов .searchTabs__item
+          items.forEach(item => {
+            item.style.setProperty('--before-display', 'none');
+          });
+        }
+
+      }
+    });
+  });
 }

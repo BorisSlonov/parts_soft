@@ -14,3 +14,4 @@ import "%modules%/accordion/accordion";
 import "%modules%/tabs/tabs";
 import "%modules%/pagePrices/pagePrices";
 import "%modules%/pageArticle/pageArticle";
+import "%modules%/pageSearch/search";
