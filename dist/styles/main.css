@@ -5361,6 +5361,18 @@ h4 {
     font-size: 14px;
   }
 
+  .searchInfoCard__footerLinkIcon_planfix::before {
+    display: none;
+  }
+
+  .searchInfoCard__footerLinkIcon_tg::before {
+    display: none;
+  }
+
+  .searchInfoCard__footerLinkIcon_local::before {
+    display: none;
+  }
+
   .pagePrices__subtitle {
     color: #5c5c5c;
     font-size: 14px;

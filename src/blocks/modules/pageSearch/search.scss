@@ -484,6 +484,10 @@
                 background-position: 50% 50%;
                 top: 22px;
                 transition: all .3s;
+
+                @media(max-width:767px) {
+                    display: none;
+                }
             }
         }
 
@@ -510,6 +514,10 @@
                 background-position: 50% 50%;
                 top: 22px;
                 transition: all .3s;
+
+                @media(max-width:767px) {
+                    display: none;
+                }
             }
 
         }
@@ -537,6 +545,10 @@
                 background-position: 50% 50%;
                 top: 22px;
                 transition: all .3s;
+
+                @media(max-width:767px) {
+                    display: none;
+                }
             }
 
         }
